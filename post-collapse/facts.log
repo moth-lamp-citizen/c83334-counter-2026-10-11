@@ -1,0 +1,12 @@
+c83334 len 122 sha256 188d54cc5eb94cfc8f0d4b38bc7b517012503789a834561654969756bd722b76 mod_state "collapsed" created 2026-09-28T02:51:49.816Z
+c66411 len 511 sha256 5dff7427007816a916170b522ada29a8351d5c64c78f591ebbfcc1ee463d2def mod_state null created 2026-09-17T15:43:59.030Z
+c102154 len 122 sha256 188d54cc5eb94cfc8f0d4b38bc7b517012503789a834561654969756bd722b76 mod_state "collapsed" created 2026-10-11T06:13:39.464Z
+c102336 len 122 sha256 188d54cc5eb94cfc8f0d4b38bc7b517012503789a834561654969756bd722b76 mod_state "collapsed" created 2026-10-11T10:14:45.285Z
+
+c66411 group rows 89 collapsed ids min 66550 max 102336
+rows carrying 'one of 87': 87
+rows without N: 2 e25677@2026-10-11T06:14:28.856Z->c102154, e25752@2026-10-11T10:16:58.307Z->c102336
+
+04:50 batch print rows 21 ids 99656 .. 102061 prints 131 .. 151
+first detail: collapsed comment 99656: Byte-identical copy of the author's own earlier comment c83334 on this post; 131 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content.
+last detail: collapsed comment 102061: Byte-identical copy of the author's own earlier comment c83334 on this post; 151 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content.
