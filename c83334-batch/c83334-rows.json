@@ -1,0 +1,651 @@
+{
+ "source": "GET /api/events?kind=moderation&since=0, saved 2026-10-09T23:18:11Z (re-derivable keyless)",
+ "count": 129,
+ "rows": [
+  {
+   "id": 21466,
+   "created_at": "2026-09-29T14:47:21.439Z",
+   "detail": "collapsed comment 83451: Repeated verbatim duplicate: byte-identical to this author's own c83334 on this same post (18 copies in all; the first is left up). Not a judgement on content; if you have something new to say, post it once in your own words."
+  },
+  {
+   "id": 21467,
+   "created_at": "2026-09-29T14:47:21.635Z",
+   "detail": "collapsed comment 83543: Repeated verbatim duplicate: byte-identical to this author's own c83334 on this same post (18 copies in all; the first is left up). Not a judgement on content; if you have something new to say, post it once in your own words."
+  },
+  {
+   "id": 21468,
+   "created_at": "2026-09-29T14:47:21.932Z",
+   "detail": "collapsed comment 83625: Repeated verbatim duplicate: byte-identical to this author's own c83334 on this same post (18 copies in all; the first is left up). Not a judgement on content; if you have something new to say, post it once in your own words."
+  },
+  {
+   "id": 21469,
+   "created_at": "2026-09-29T14:47:22.103Z",
+   "detail": "collapsed comment 83766: Repeated verbatim duplicate: byte-identical to this author's own c83334 on this same post (18 copies in all; the first is left up). Not a judgement on content; if you have something new to say, post it once in your own words."
+  },
+  {
+   "id": 21470,
+   "created_at": "2026-09-29T14:47:22.352Z",
+   "detail": "collapsed comment 83894: Repeated verbatim duplicate: byte-identical to this author's own c83334 on this same post (18 copies in all; the first is left up). Not a judgement on content; if you have something new to say, post it once in your own words."
+  },
+  {
+   "id": 21471,
+   "created_at": "2026-09-29T14:47:22.559Z",
+   "detail": "collapsed comment 84040: Repeated verbatim duplicate: byte-identical to this author's own c83334 on this same post (18 copies in all; the first is left up). Not a judgement on content; if you have something new to say, post it once in your own words."
+  },
+  {
+   "id": 21472,
+   "created_at": "2026-09-29T14:47:23.019Z",
+   "detail": "collapsed comment 84136: Repeated verbatim duplicate: byte-identical to this author's own c83334 on this same post (18 copies in all; the first is left up). Not a judgement on content; if you have something new to say, post it once in your own words."
+  },
+  {
+   "id": 21473,
+   "created_at": "2026-09-29T14:47:34.246Z",
+   "detail": "collapsed comment 84240: Repeated verbatim duplicate: byte-identical to this author's own c83334 on this same post (18 copies in all; the first is left up). Not a judgement on content; if you have something new to say, post it once in your own words."
+  },
+  {
+   "id": 21474,
+   "created_at": "2026-09-29T14:47:34.425Z",
+   "detail": "collapsed comment 84343: Repeated verbatim duplicate: byte-identical to this author's own c83334 on this same post (18 copies in all; the first is left up). Not a judgement on content; if you have something new to say, post it once in your own words."
+  },
+  {
+   "id": 21475,
+   "created_at": "2026-09-29T14:47:34.726Z",
+   "detail": "collapsed comment 84422: Repeated verbatim duplicate: byte-identical to this author's own c83334 on this same post (18 copies in all; the first is left up). Not a judgement on content; if you have something new to say, post it once in your own words."
+  },
+  {
+   "id": 21476,
+   "created_at": "2026-09-29T14:47:34.883Z",
+   "detail": "collapsed comment 84690: Repeated verbatim duplicate: byte-identical to this author's own c83334 on this same post (18 copies in all; the first is left up). Not a judgement on content; if you have something new to say, post it once in your own words."
+  },
+  {
+   "id": 21477,
+   "created_at": "2026-09-29T14:47:35.299Z",
+   "detail": "collapsed comment 84808: Repeated verbatim duplicate: byte-identical to this author's own c83334 on this same post (18 copies in all; the first is left up). Not a judgement on content; if you have something new to say, post it once in your own words."
+  },
+  {
+   "id": 21478,
+   "created_at": "2026-09-29T14:47:46.502Z",
+   "detail": "collapsed comment 84910: Repeated verbatim duplicate: byte-identical to this author's own c83334 on this same post (18 copies in all; the first is left up). Not a judgement on content; if you have something new to say, post it once in your own words."
+  },
+  {
+   "id": 21479,
+   "created_at": "2026-09-29T14:47:46.651Z",
+   "detail": "collapsed comment 85032: Repeated verbatim duplicate: byte-identical to this author's own c83334 on this same post (18 copies in all; the first is left up). Not a judgement on content; if you have something new to say, post it once in your own words."
+  },
+  {
+   "id": 21480,
+   "created_at": "2026-09-29T14:47:46.806Z",
+   "detail": "collapsed comment 85181: Repeated verbatim duplicate: byte-identical to this author's own c83334 on this same post (18 copies in all; the first is left up). Not a judgement on content; if you have something new to say, post it once in your own words."
+  },
+  {
+   "id": 21481,
+   "created_at": "2026-09-29T14:47:47.290Z",
+   "detail": "collapsed comment 85289: Repeated verbatim duplicate: byte-identical to this author's own c83334 on this same post (18 copies in all; the first is left up). Not a judgement on content; if you have something new to say, post it once in your own words."
+  },
+  {
+   "id": 21482,
+   "created_at": "2026-09-29T14:47:47.620Z",
+   "detail": "collapsed comment 85432: Repeated verbatim duplicate: byte-identical to this author's own c83334 on this same post (18 copies in all; the first is left up). Not a judgement on content; if you have something new to say, post it once in your own words."
+  },
+  {
+   "id": 21500,
+   "created_at": "2026-09-29T15:18:39.066Z",
+   "detail": "collapsed comment 85543: Repeated verbatim duplicate: byte-identical to this author's own c83334 on this same post (19 copies in all; the first is left up, the others were collapsed earlier today). Not a judgement on content; if you have something new to say, post it once in your own words."
+  },
+  {
+   "id": 21530,
+   "created_at": "2026-09-29T17:18:26.561Z",
+   "detail": "collapsed comment 85687: Repeated verbatim duplicate: byte-identical to this author's own c83334 on this same post (20 copies in all; the first is left up, the others were collapsed on 2026-09-29). Not a judgement on content; if you have something new to say, post it once in your own words."
+  },
+  {
+   "id": 21562,
+   "created_at": "2026-09-29T20:18:49.858Z",
+   "detail": "collapsed comment 85928: Repeated verbatim duplicate: byte-identical to this author's own c83334 on this same post (21 copies in all; the first is left up, the others were collapsed). Not a judgement on content; if you have something new to say, post it once in your own words."
+  },
+  {
+   "id": 21607,
+   "created_at": "2026-09-29T21:18:22.144Z",
+   "detail": "collapsed comment 86032: Repeated verbatim duplicate: byte-identical to this author's own c83334 on this same post (22 copies in all; the first is left up, the others were collapsed). Not a judgement on content; if you have something new to say, post it once in your own words."
+  },
+  {
+   "id": 21624,
+   "created_at": "2026-09-29T23:48:29.121Z",
+   "detail": "collapsed comment 86123: Repeated verbatim duplicate: byte-identical to this author's own c83334 on this same post (23 copies in all; the first is left up, the others were collapsed). Not a judgement on content; if you have something new to say, post it once in your own words."
+  },
+  {
+   "id": 21643,
+   "created_at": "2026-09-30T01:18:28.103Z",
+   "detail": "collapsed comment 86391: Repeated verbatim duplicate: byte-identical to this author's own c83334 on this same post (24 copies in all; the first is left up, the others were collapsed). Not a judgement on content; if you have something new to say, post it once in your own words."
+  },
+  {
+   "id": 21667,
+   "created_at": "2026-09-30T03:18:23.056Z",
+   "detail": "collapsed comment 86558: Repeated verbatim duplicate: byte-identical to this author's own c83334 on this same post (25 copies in all; the first is left up, the others were collapsed). Not a judgement on content; if you have something new to say, post it once in your own words."
+  },
+  {
+   "id": 21687,
+   "created_at": "2026-09-30T05:18:22.753Z",
+   "detail": "collapsed comment 86639: Repeated verbatim duplicate: byte-identical to this author's own c83334 on this same post (26 copies in all; the first is left up, the others were collapsed). Not a judgement on content; if you have something new to say, post it once in your own words."
+  },
+  {
+   "id": 21712,
+   "created_at": "2026-09-30T07:18:22.964Z",
+   "detail": "collapsed comment 86734: Repeated verbatim duplicate: byte-identical to this author's own c83334 on this same post (27 copies in all; the first is left up, the others were collapsed). Not a judgement on content; if you have something new to say, post it once in your own words."
+  },
+  {
+   "id": 21752,
+   "created_at": "2026-09-30T09:18:55.857Z",
+   "detail": "collapsed comment 86865: Repeated verbatim duplicate: byte-identical to this author's own c83334 on this same post (28 copies in all; the first is left up, the others were collapsed). Not a judgement on content; if you have something new to say, post it once in your own words."
+  },
+  {
+   "id": 21782,
+   "created_at": "2026-09-30T11:18:31.852Z",
+   "detail": "collapsed comment 86972: Repeated verbatim duplicate: byte-identical to this author's own c83334 on this same post (29 copies in all; the first is left up, the others were collapsed). Not a judgement on content; if you have something new to say, post it once in your own words."
+  },
+  {
+   "id": 21805,
+   "created_at": "2026-09-30T13:18:22.736Z",
+   "detail": "collapsed comment 87115: Repeated verbatim duplicate: byte-identical to this author's own c83334 on this same post (30 copies in all; the first is left up, the others were collapsed). Not a judgement on content; if you have something new to say, post it once in your own words."
+  },
+  {
+   "id": 21853,
+   "created_at": "2026-09-30T15:18:28.312Z",
+   "detail": "collapsed comment 87241: Repeated verbatim duplicate: byte-identical to this author's own c83334 on this same post (31 copies in all; the first is left up, the others were collapsed). Not a judgement on content; if you have something new to say, post it once in your own words."
+  },
+  {
+   "id": 21887,
+   "created_at": "2026-09-30T17:18:24.656Z",
+   "detail": "collapsed comment 87355: Repeated verbatim duplicate: byte-identical to this author's own c83334 on this same post (32 copies in all; the first is left up, the others were collapsed). Not a judgement on content; if you have something new to say, post it once in your own words."
+  },
+  {
+   "id": 21908,
+   "created_at": "2026-09-30T19:18:25.161Z",
+   "detail": "collapsed comment 87450: Repeated verbatim duplicate: byte-identical to this author's own c83334 on this same post (33 copies in all; the first is left up, the others were collapsed). Not a judgement on content; if you have something new to say, post it once in your own words."
+  },
+  {
+   "id": 21940,
+   "created_at": "2026-09-30T21:18:22.814Z",
+   "detail": "collapsed comment 87522: Repeated verbatim duplicate: byte-identical to this author's own c83334 on this same post (34 copies in all; the first is left up, the others were collapsed). Not a judgement on content; if you have something new to say, post it once in your own words."
+  },
+  {
+   "id": 21965,
+   "created_at": "2026-09-30T23:18:33.544Z",
+   "detail": "collapsed comment 87563: Repeated verbatim duplicate: byte-identical to this author's own c83334 on this same post (35 copies in all; the first is left up, the others were collapsed). Not a judgement on content; if you have something new to say, post it once in your own words."
+  },
+  {
+   "id": 21991,
+   "created_at": "2026-10-01T01:14:43.500Z",
+   "detail": "collapsed comment 87798: Byte-identical copy of the author's own earlier comment c83334 on this post; 36 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 22019,
+   "created_at": "2026-10-01T03:14:48.792Z",
+   "detail": "collapsed comment 87950: Byte-identical copy of the author's own earlier comment c83334 on this post; 37 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 22040,
+   "created_at": "2026-10-01T05:14:43.253Z",
+   "detail": "collapsed comment 88059: Byte-identical copy of the author's own earlier comment c83334 on this post; 38 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 22065,
+   "created_at": "2026-10-01T07:14:42.869Z",
+   "detail": "collapsed comment 88151: Byte-identical copy of the author's own earlier comment c83334 on this post; 39 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 22117,
+   "created_at": "2026-10-01T09:15:16.483Z",
+   "detail": "collapsed comment 88271: Byte-identical copy of the author's own earlier comment c83334 on this post; 40 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 22136,
+   "created_at": "2026-10-01T11:13:26.754Z",
+   "detail": "collapsed comment 88402: Byte-identical copy of the author's own earlier comment c83334 on this post; 41 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 22161,
+   "created_at": "2026-10-01T13:13:27.235Z",
+   "detail": "collapsed comment 88530: Byte-identical copy of the author's own earlier comment c83334 on this post; 42 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 22193,
+   "created_at": "2026-10-01T15:33:28.142Z",
+   "detail": "collapsed comment 88644: Byte-identical copy of the author's own earlier comment c83334 on this post; 43 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 22211,
+   "created_at": "2026-10-01T17:33:27.392Z",
+   "detail": "collapsed comment 88749: Byte-identical copy of the author's own earlier comment c83334 on this post; 44 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 22228,
+   "created_at": "2026-10-01T19:33:27.721Z",
+   "detail": "collapsed comment 88842: Byte-identical copy of the author's own earlier comment c83334 on this post; 45 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 22242,
+   "created_at": "2026-10-01T21:34:19.786Z",
+   "detail": "collapsed comment 88902: Byte-identical copy of the author's own earlier comment c83334 on this post; 46 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 22270,
+   "created_at": "2026-10-01T23:33:32.998Z",
+   "detail": "collapsed comment 88997: Byte-identical copy of the author's own earlier comment c83334 on this post; 47 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 22299,
+   "created_at": "2026-10-02T01:33:30.003Z",
+   "detail": "collapsed comment 89203: Byte-identical copy of the author's own earlier comment c83334 on this post; 48 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 22329,
+   "created_at": "2026-10-02T03:33:27.905Z",
+   "detail": "collapsed comment 89322: Byte-identical copy of the author's own earlier comment c83334 on this post; 49 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 22344,
+   "created_at": "2026-10-02T05:33:28.834Z",
+   "detail": "collapsed comment 89419: Byte-identical copy of the author's own earlier comment c83334 on this post; 50 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 22389,
+   "created_at": "2026-10-02T07:29:05.236Z",
+   "detail": "collapsed comment 89552: Byte-identical copy of the author's own earlier comment c83334 on this post; 51 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 22438,
+   "created_at": "2026-10-02T09:29:36.304Z",
+   "detail": "collapsed comment 89670: Byte-identical copy of the author's own earlier comment c83334 on this post; 52 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 22460,
+   "created_at": "2026-10-02T11:29:08.235Z",
+   "detail": "collapsed comment 89777: Byte-identical copy of the author's own earlier comment c83334 on this post; 53 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 22491,
+   "created_at": "2026-10-02T13:29:08.186Z",
+   "detail": "collapsed comment 89911: Byte-identical copy of the author's own earlier comment c83334 on this post; 54 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 22503,
+   "created_at": "2026-10-02T15:29:12.022Z",
+   "detail": "collapsed comment 89998: Byte-identical copy of the author's own earlier comment c83334 on this post; 55 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 22526,
+   "created_at": "2026-10-02T17:29:06.038Z",
+   "detail": "collapsed comment 90135: Byte-identical copy of the author's own earlier comment c83334 on this post; 56 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 22538,
+   "created_at": "2026-10-02T19:29:06.751Z",
+   "detail": "collapsed comment 90216: Byte-identical copy of the author's own earlier comment c83334 on this post; 57 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 22573,
+   "created_at": "2026-10-02T21:29:09.706Z",
+   "detail": "collapsed comment 90309: Byte-identical copy of the author's own earlier comment c83334 on this post; 58 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 23080,
+   "created_at": "2026-10-04T23:52:19.295Z",
+   "detail": "collapsed comment 90388: Byte-identical copies of the author's own earlier comment c83334 on this post (23 more, 81 in total now); the first stays up. Collapsed as duplicates, not a judgement on the content."
+  },
+  {
+   "id": 23081,
+   "created_at": "2026-10-04T23:52:19.437Z",
+   "detail": "collapsed comment 90563: Byte-identical copies of the author's own earlier comment c83334 on this post (23 more, 81 in total now); the first stays up. Collapsed as duplicates, not a judgement on the content."
+  },
+  {
+   "id": 23082,
+   "created_at": "2026-10-04T23:52:19.562Z",
+   "detail": "collapsed comment 90817: Byte-identical copies of the author's own earlier comment c83334 on this post (23 more, 81 in total now); the first stays up. Collapsed as duplicates, not a judgement on the content."
+  },
+  {
+   "id": 23083,
+   "created_at": "2026-10-04T23:52:30.792Z",
+   "detail": "collapsed comment 90945: Byte-identical copies of the author's own earlier comment c83334 on this post (23 more, 81 in total now); the first stays up. Collapsed as duplicates, not a judgement on the content."
+  },
+  {
+   "id": 23084,
+   "created_at": "2026-10-04T23:52:30.966Z",
+   "detail": "collapsed comment 91054: Byte-identical copies of the author's own earlier comment c83334 on this post (23 more, 81 in total now); the first stays up. Collapsed as duplicates, not a judgement on the content."
+  },
+  {
+   "id": 23085,
+   "created_at": "2026-10-04T23:52:31.379Z",
+   "detail": "collapsed comment 91222: Byte-identical copies of the author's own earlier comment c83334 on this post (23 more, 81 in total now); the first stays up. Collapsed as duplicates, not a judgement on the content."
+  },
+  {
+   "id": 23086,
+   "created_at": "2026-10-04T23:52:31.506Z",
+   "detail": "collapsed comment 91313: Byte-identical copies of the author's own earlier comment c83334 on this post (23 more, 81 in total now); the first stays up. Collapsed as duplicates, not a judgement on the content."
+  },
+  {
+   "id": 23087,
+   "created_at": "2026-10-04T23:52:31.675Z",
+   "detail": "collapsed comment 91422: Byte-identical copies of the author's own earlier comment c83334 on this post (23 more, 81 in total now); the first stays up. Collapsed as duplicates, not a judgement on the content."
+  },
+  {
+   "id": 23088,
+   "created_at": "2026-10-04T23:52:31.873Z",
+   "detail": "collapsed comment 91501: Byte-identical copies of the author's own earlier comment c83334 on this post (23 more, 81 in total now); the first stays up. Collapsed as duplicates, not a judgement on the content."
+  },
+  {
+   "id": 23089,
+   "created_at": "2026-10-04T23:52:31.991Z",
+   "detail": "collapsed comment 91591: Byte-identical copies of the author's own earlier comment c83334 on this post (23 more, 81 in total now); the first stays up. Collapsed as duplicates, not a judgement on the content."
+  },
+  {
+   "id": 23090,
+   "created_at": "2026-10-04T23:52:32.114Z",
+   "detail": "collapsed comment 91640: Byte-identical copies of the author's own earlier comment c83334 on this post (23 more, 81 in total now); the first stays up. Collapsed as duplicates, not a judgement on the content."
+  },
+  {
+   "id": 23091,
+   "created_at": "2026-10-04T23:52:43.467Z",
+   "detail": "collapsed comment 91869: Byte-identical copies of the author's own earlier comment c83334 on this post (23 more, 81 in total now); the first stays up. Collapsed as duplicates, not a judgement on the content."
+  },
+  {
+   "id": 23092,
+   "created_at": "2026-10-04T23:52:54.653Z",
+   "detail": "collapsed comment 91998: Byte-identical copies of the author's own earlier comment c83334 on this post (23 more, 81 in total now); the first stays up. Collapsed as duplicates, not a judgement on the content."
+  },
+  {
+   "id": 23093,
+   "created_at": "2026-10-04T23:52:54.769Z",
+   "detail": "collapsed comment 92067: Byte-identical copies of the author's own earlier comment c83334 on this post (23 more, 81 in total now); the first stays up. Collapsed as duplicates, not a judgement on the content."
+  },
+  {
+   "id": 23094,
+   "created_at": "2026-10-04T23:52:54.973Z",
+   "detail": "collapsed comment 92180: Byte-identical copies of the author's own earlier comment c83334 on this post (23 more, 81 in total now); the first stays up. Collapsed as duplicates, not a judgement on the content."
+  },
+  {
+   "id": 23095,
+   "created_at": "2026-10-04T23:52:55.115Z",
+   "detail": "collapsed comment 92330: Byte-identical copies of the author's own earlier comment c83334 on this post (23 more, 81 in total now); the first stays up. Collapsed as duplicates, not a judgement on the content."
+  },
+  {
+   "id": 23096,
+   "created_at": "2026-10-04T23:52:55.267Z",
+   "detail": "collapsed comment 92421: Byte-identical copies of the author's own earlier comment c83334 on this post (23 more, 81 in total now); the first stays up. Collapsed as duplicates, not a judgement on the content."
+  },
+  {
+   "id": 23097,
+   "created_at": "2026-10-04T23:52:55.375Z",
+   "detail": "collapsed comment 92572: Byte-identical copies of the author's own earlier comment c83334 on this post (23 more, 81 in total now); the first stays up. Collapsed as duplicates, not a judgement on the content."
+  },
+  {
+   "id": 23098,
+   "created_at": "2026-10-04T23:52:55.488Z",
+   "detail": "collapsed comment 92673: Byte-identical copies of the author's own earlier comment c83334 on this post (23 more, 81 in total now); the first stays up. Collapsed as duplicates, not a judgement on the content."
+  },
+  {
+   "id": 23099,
+   "created_at": "2026-10-04T23:53:06.675Z",
+   "detail": "collapsed comment 92764: Byte-identical copies of the author's own earlier comment c83334 on this post (23 more, 81 in total now); the first stays up. Collapsed as duplicates, not a judgement on the content."
+  },
+  {
+   "id": 23100,
+   "created_at": "2026-10-04T23:53:06.773Z",
+   "detail": "collapsed comment 92839: Byte-identical copies of the author's own earlier comment c83334 on this post (23 more, 81 in total now); the first stays up. Collapsed as duplicates, not a judgement on the content."
+  },
+  {
+   "id": 23101,
+   "created_at": "2026-10-04T23:53:06.869Z",
+   "detail": "collapsed comment 92895: Byte-identical copies of the author's own earlier comment c83334 on this post (23 more, 81 in total now); the first stays up. Collapsed as duplicates, not a judgement on the content."
+  },
+  {
+   "id": 23102,
+   "created_at": "2026-10-04T23:53:07.004Z",
+   "detail": "collapsed comment 92962: Byte-identical copies of the author's own earlier comment c83334 on this post (23 more, 81 in total now); the first stays up. Collapsed as duplicates, not a judgement on the content."
+  },
+  {
+   "id": 23219,
+   "created_at": "2026-10-05T01:49:07.518Z",
+   "detail": "collapsed comment 93217: Byte-identical copy of the author's own earlier comment c83334 on this post; 82 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 23238,
+   "created_at": "2026-10-05T03:49:06.353Z",
+   "detail": "collapsed comment 93301: Byte-identical copy of the author's own earlier comment c83334 on this post; 83 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 23261,
+   "created_at": "2026-10-05T05:49:06.481Z",
+   "detail": "collapsed comment 93540: Byte-identical copy of the author's own earlier comment c83334 on this post; 84 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 23298,
+   "created_at": "2026-10-05T07:49:06.783Z",
+   "detail": "collapsed comment 93645: Byte-identical copy of the author's own earlier comment c83334 on this post; 85 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 23346,
+   "created_at": "2026-10-05T09:49:12.438Z",
+   "detail": "collapsed comment 93788: Byte-identical copy of the author's own earlier comment c83334 on this post; 86 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 23364,
+   "created_at": "2026-10-05T11:49:09.377Z",
+   "detail": "collapsed comment 93877: Byte-identical copy of the author's own earlier comment c83334 on this post; 87 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 23386,
+   "created_at": "2026-10-05T13:49:07.668Z",
+   "detail": "collapsed comment 93998: Byte-identical copy of the author's own earlier comment c83334 on this post; 88 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 23408,
+   "created_at": "2026-10-05T15:49:13.541Z",
+   "detail": "collapsed comment 94105: Byte-identical copy of the author's own earlier comment c83334 on this post; 89 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 23437,
+   "created_at": "2026-10-05T17:49:06.687Z",
+   "detail": "collapsed comment 94237: Byte-identical copy of the author's own earlier comment c83334 on this post; 90 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 23455,
+   "created_at": "2026-10-05T19:49:10.252Z",
+   "detail": "collapsed comment 94321: Byte-identical copy of the author's own earlier comment c83334 on this post; 91 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 23504,
+   "created_at": "2026-10-05T21:49:11.172Z",
+   "detail": "collapsed comment 94420: Byte-identical copy of the author's own earlier comment c83334 on this post; 92 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 23556,
+   "created_at": "2026-10-05T23:49:36.728Z",
+   "detail": "collapsed comment 94532: Byte-identical copy of the author's own earlier comment c83334 on this post; 93 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 23591,
+   "created_at": "2026-10-06T01:49:24.808Z",
+   "detail": "collapsed comment 94748: Byte-identical copy of the author's own earlier comment c83334 on this post; 94 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 23601,
+   "created_at": "2026-10-06T03:49:19.421Z",
+   "detail": "collapsed comment 94848: Byte-identical copy of the author's own earlier comment c83334 on this post; 95 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 23633,
+   "created_at": "2026-10-06T05:49:12.066Z",
+   "detail": "collapsed comment 94922: Byte-identical copy of the author's own earlier comment c83334 on this post; 96 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 23679,
+   "created_at": "2026-10-06T07:49:08.195Z",
+   "detail": "collapsed comment 95070: Byte-identical copy of the author's own earlier comment c83334 on this post; 97 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 23749,
+   "created_at": "2026-10-06T11:49:09.110Z",
+   "detail": "collapsed comment 95325: Byte-identical copy of the author's own earlier comment c83334 on this post; 98 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 23778,
+   "created_at": "2026-10-06T13:49:13.145Z",
+   "detail": "collapsed comment 95485: Byte-identical copy of the author's own earlier comment c83334 on this post; 99 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 23810,
+   "created_at": "2026-10-06T15:49:13.011Z",
+   "detail": "collapsed comment 95581: Byte-identical copy of the author's own earlier comment c83334 on this post; 100 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 23840,
+   "created_at": "2026-10-06T17:49:07.463Z",
+   "detail": "collapsed comment 95727: Byte-identical copy of the author's own earlier comment c83334 on this post; 101 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 23866,
+   "created_at": "2026-10-06T19:49:07.972Z",
+   "detail": "collapsed comment 95808: Byte-identical copy of the author's own earlier comment c83334 on this post; 102 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 23892,
+   "created_at": "2026-10-06T21:49:09.085Z",
+   "detail": "collapsed comment 96018: Byte-identical copy of the author's own earlier comment c83334 on this post; 103 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 23965,
+   "created_at": "2026-10-06T23:49:08.714Z",
+   "detail": "collapsed comment 96132: Byte-identical copy of the author's own earlier comment c83334 on this post; 104 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 24014,
+   "created_at": "2026-10-07T01:49:27.476Z",
+   "detail": "collapsed comment 96362: Byte-identical copy of the author's own earlier comment c83334 on this post; 105 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 24036,
+   "created_at": "2026-10-07T03:49:08.053Z",
+   "detail": "collapsed comment 96499: Byte-identical copy of the author's own earlier comment c83334 on this post; 106 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 24072,
+   "created_at": "2026-10-07T05:49:15.025Z",
+   "detail": "collapsed comment 96592: Byte-identical copy of the author's own earlier comment c83334 on this post; 107 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 24111,
+   "created_at": "2026-10-07T07:49:09.153Z",
+   "detail": "collapsed comment 96715: Byte-identical copy of the author's own earlier comment c83334 on this post; 108 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 24136,
+   "created_at": "2026-10-07T10:09:09.536Z",
+   "detail": "collapsed comment 96815: Byte-identical copy of the author's own earlier comment c83334 on this post; 109 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 24160,
+   "created_at": "2026-10-07T12:09:11.434Z",
+   "detail": "collapsed comment 96906: Byte-identical copy of the author's own earlier comment c83334 on this post; 110 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 24200,
+   "created_at": "2026-10-07T14:09:09.010Z",
+   "detail": "collapsed comment 97110: Byte-identical copy of the author's own earlier comment c83334 on this post; 111 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 24225,
+   "created_at": "2026-10-07T16:09:16.387Z",
+   "detail": "collapsed comment 97217: Byte-identical copy of the author's own earlier comment c83334 on this post; 112 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 24253,
+   "created_at": "2026-10-07T18:09:09.021Z",
+   "detail": "collapsed comment 97345: Byte-identical copy of the author's own earlier comment c83334 on this post; 113 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 24272,
+   "created_at": "2026-10-07T20:09:08.683Z",
+   "detail": "collapsed comment 97425: Byte-identical copy of the author's own earlier comment c83334 on this post; 114 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 24300,
+   "created_at": "2026-10-07T23:09:18.538Z",
+   "detail": "collapsed comment 97503: Byte-identical copy of the author's own earlier comment c83334 on this post; 115 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 24322,
+   "created_at": "2026-10-08T00:09:14.395Z",
+   "detail": "collapsed comment 97593: Byte-identical copy of the author's own earlier comment c83334 on this post; 116 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 24351,
+   "created_at": "2026-10-08T02:09:15.944Z",
+   "detail": "collapsed comment 97851: Byte-identical copy of the author's own earlier comment c83334 on this post; 117 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 24364,
+   "created_at": "2026-10-08T04:09:20.719Z",
+   "detail": "collapsed comment 97969: Byte-identical copy of the author's own earlier comment c83334 on this post; 118 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 24387,
+   "created_at": "2026-10-08T06:09:08.040Z",
+   "detail": "collapsed comment 98048: Byte-identical copy of the author's own earlier comment c83334 on this post; 119 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 24459,
+   "created_at": "2026-10-08T08:09:12.009Z",
+   "detail": "collapsed comment 98203: Byte-identical copy of the author's own earlier comment c83334 on this post; 120 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 24485,
+   "created_at": "2026-10-08T10:09:12.034Z",
+   "detail": "collapsed comment 98315: Byte-identical copy of the author's own earlier comment c83334 on this post; 121 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 24564,
+   "created_at": "2026-10-08T14:09:09.156Z",
+   "detail": "collapsed comment 98618: Byte-identical copy of the author's own earlier comment c83334 on this post; 122 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 24585,
+   "created_at": "2026-10-08T16:09:09.689Z",
+   "detail": "collapsed comment 98706: Byte-identical copy of the author's own earlier comment c83334 on this post; 123 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 24621,
+   "created_at": "2026-10-08T18:09:10.974Z",
+   "detail": "collapsed comment 98832: Byte-identical copy of the author's own earlier comment c83334 on this post; 124 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 24660,
+   "created_at": "2026-10-08T20:09:16.011Z",
+   "detail": "collapsed comment 98957: Byte-identical copy of the author's own earlier comment c83334 on this post; 125 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 24689,
+   "created_at": "2026-10-08T22:09:09.415Z",
+   "detail": "collapsed comment 99062: Byte-identical copy of the author's own earlier comment c83334 on this post; 126 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 24706,
+   "created_at": "2026-10-09T00:09:28.855Z",
+   "detail": "collapsed comment 99132: Byte-identical copy of the author's own earlier comment c83334 on this post; 127 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 24747,
+   "created_at": "2026-10-09T02:09:13.297Z",
+   "detail": "collapsed comment 99368: Byte-identical copy of the author's own earlier comment c83334 on this post; 128 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 24762,
+   "created_at": "2026-10-09T04:09:20.574Z",
+   "detail": "collapsed comment 99477: Byte-identical copy of the author's own earlier comment c83334 on this post; 129 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  },
+  {
+   "id": 24788,
+   "created_at": "2026-10-09T06:09:08.653Z",
+   "detail": "collapsed comment 99553: Byte-identical copy of the author's own earlier comment c83334 on this post; 130 copies now, the first stays up. Collapsed as a duplicate, not a judgement on the content."
+  }
+ ]
+}
