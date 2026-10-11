@@ -62,5 +62,35 @@ const anchors = new Set(w1.map(e => (/earlier comment c(\d+) on this post; one o
 ok("post-collapse: 18 anchors in the scan", anchors.size === 18, "got " + anchors.size);
 const ids21 = events.filter(e => /copies now/.test(e.detail || "")).map(e => Number(/collapsed comment (\d+)/.exec(e.detail)[1]));
 ok("post-collapse: scan ids and batch ids disjoint", ids87.every(x => !ids21.includes(x)), ids87.length + " vs " + ids21.length);
+
+// per-copy: the c66411 duplicate stream as a thread (c102747, /post/8275)
+const pcd = (n) => JSON.parse(readFileSync("per-copy/" + n, "utf8"));
+const m2 = pcd("mod-events-1715Z.json");
+ok("per-copy: 6 moderation rows e25764..e25838, has_more false", m2.events.length === 6 && m2.events[0].id === 25764 && m2.events[5].id === 25838 && m2.has_more === false && m2.latest_event_id === 25855);
+const dup = m2.events.filter(e => /earlier comment c66411/.test(e.detail || ""));
+ok("per-copy: three duplicate rows name c66411, no count form", dup.length === 3 && dup.every(e => !/copies now|one of \d+ such copies/.test(e.detail)));
+const dupById = Object.fromEntries(dup.map(e => [e.id, e]));
+const wantDup = { 25782: [102454, "2026-10-11T12:23:10.626Z"], 25806: [102613, "2026-10-11T14:33:35.453Z"], 25821: [102698, "2026-10-11T16:17:37.576Z"] };
+ok("per-copy: the three rows are e25782/e25806/e25821 with the stated ids and times", Object.keys(wantDup).every(k => dupById[k] && new RegExp("collapsed comment " + wantDup[k][0]).test(dupById[k].detail) && dupById[k].created_at === Date.parse(wantDup[k][1])));
+const pre = w1.filter(e => [25677, 25752].includes(e.id));
+ok("per-copy: e25677/e25752 in the 1115Z window, same reason", pre.length === 2 && pre.every(e => /earlier comment c66411/.test(e.detail) && !/one of \d+ such copies/.test(e.detail)));
+const reads = Object.fromEntries([66411, 83334, 102154, 102336, 102454, 102613, 102698].map(id => [id, pcd("comment-" + id + ".json").comment]));
+ok("per-copy: c66411 standing 511 chars 5dff7427...", reads[66411].mod_state === null && reads[66411].body.length === 511 && H(reads[66411].body) === WANT);
+ok("per-copy: c83334 and the five copies collapsed, 122-char placeholder", [83334, 102154, 102336, 102454, 102613, 102698].every(id => reads[id].mod_state === "collapsed" && reads[id].body.length === 122 && H(reads[id].body) === PLACE));
+const lagOf = (id, ts) => Date.parse(ts) - Number(reads[id].created_at);
+const lagWant = { 102154: [25677, "2026-10-11T06:14:28.856Z", 49392], 102336: [25752, "2026-10-11T10:16:58.307Z", 133022], 102454: [25782, "2026-10-11T12:23:10.626Z", 478129], 102613: [25806, "2026-10-11T14:33:35.453Z", 1071251], 102698: [25821, "2026-10-11T16:17:37.576Z", 83286] };
+ok("per-copy: the five collapse lags are 49392/133022/478129/1071251/83286 ms", Object.values(lagWant).every(v => lagOf(Object.keys(lagWant).find(k => lagWant[k] === v), v[1]) === v[2]));
+const pg1 = pcd("post-580-page1.json"), pg2 = pcd("post-580-page2.json");
+ok("per-copy: page1 1000 of 1351, has_more true, next_since 1790375819367:79858", pg1.comments_total === 1351 && pg1.comments_returned === 1000 && pg1.comments_limit === 1000 && pg1.has_more === true && pg1.next_since === "1790375819367:79858");
+ok("per-copy: page2 351 of 1351, has_more false", pg2.comments_returned === 351 && pg2.comments_total === 1351 && pg2.has_more === false);
+const erp = [...pg1.comments, ...pg2.comments].filter(c => JSON.stringify(c.author || "").includes("erpin"));
+ok("per-copy: 281 erpin comments, ids 66411..102698", erp.length === 281 && Math.min(...erp.map(c => c.id)) === 66411 && Math.max(...erp.map(c => c.id)) === 102698);
+const stand2 = erp.filter(c => c.mod_state == null);
+ok("per-copy: 278 collapsed, 3 standing (66411, 70802, 70935)", erp.filter(c => c.mod_state === "collapsed").length === 278 && stand2.map(c => c.id).sort((a, b) => a - b).join(",") === "66411,70802,70935");
+ok("per-copy: every collapsed erpin body is the 122-char placeholder", erp.filter(c => c.mod_state === "collapsed").every(c => String(c.body || "").length === 122 && H(String(c.body || "")) === PLACE));
+const s70802 = stand2.find(c => c.id === 70802), s70935 = stand2.find(c => c.id === 70935);
+ok("per-copy: c70802/c70935 443 chars, identical 9f0e6603...", s70802.body.length === 443 && H(s70802.body) === H(s70935.body) && H(s70802.body) === "9f0e660349345c424a952fe3f23169147b7857345f49d70dd47ee0cbf7213ca9");
+const counter2 = erp.filter(c => c.id >= 99656 && c.id <= 102061);
+ok("per-copy: the counter's 21 rows 99656..102061, all collapsed", counter2.length === 21 && counter2.every(c => c.mod_state === "collapsed") && Math.min(...counter2.map(c => c.id)) === 99656 && Math.max(...counter2.map(c => c.id)) === 102061);
 console.log(fails ? fails + " check(s) failed" : "all checks passed");
 process.exit(fails ? 1 : 0);
