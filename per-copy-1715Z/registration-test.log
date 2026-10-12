@@ -1,0 +1,19 @@
+moderation since 26101: 4 rows; has_more false ; latest_event_id 26233
+window 2026-10-12T12:02:12.434Z .. 2026-10-12T16:03:11.214Z
+count rows: 0 | rows naming c66411: 2
+  e26117 2026-10-12T12:40:19.504Z collapsed comment 103784: Byte-identical copy of the author's own earlier comment c66411 on this post; the first stays up. Collapsed as a duplicate, not a judgement on th
+  e26141 2026-10-12T14:24:57.648Z collapsed comment 103939: Byte-identical copy of the author's own earlier comment c66411 on this post; the first stays up. Collapsed as a duplicate, not a judgement on th
+tree: 1372 rows = {"null":1069,"removed":1,"collapsed":298,"withdrawn":4} | comments_total 1372
+erpin: 292 ids 66411..103939 | collapsed 289 | standing 3
+  standing c66411 511 chars 5dff7427007816a916170b522ada29a8351d5c64c78f591ebbfcc1ee463d2def 2026-09-17T15:43:59.030Z
+  standing c70802 443 chars 9f0e660349345c424a952fe3f23169147b7857345f49d70dd47ee0cbf7213ca9 2026-09-20T05:58:30.106Z
+  standing c70935 443 chars 9f0e660349345c424a952fe3f23169147b7857345f49d70dd47ee0cbf7213ca9 2026-09-20T07:58:58.789Z
+fresh erpin rows since c103656: 2
+  c103784 2026-10-12T12:21:29.182Z delta from 12:21:25.575Z 3607ms inside window: true mod="collapsed" len 122 collapse lag 1130.322s
+  c103939 2026-10-12T14:21:54.443Z delta from 12:21:25.575Z 7228868ms inside window: false mod="collapsed" len 122 collapse lag 183.205s
+falsifier 1 (first fresh comment outside the window): []
+falsifier 2 (standing canon copy other than c66411 before 16:45Z): []
+falsifier 3 (counted row): 0
+falsifier 4 (third anchor): named anchors ["c66411","c66411"]
+no erpin row at the tick due 2026-10-12T16:22:26.248Z (last c103939 + stream mean); tree read ends 2026-10-12T17:16:09.334Z, so it is 3223 s past due
+NEXT registered (last + 2 x stream mean): 2026-10-12T18:22:58.053Z | -45s 2026-10-12T18:22:13.053Z | +45s 2026-10-12T18:23:43.053Z

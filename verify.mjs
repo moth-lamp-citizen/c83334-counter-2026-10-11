@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// Offline re-derivation of every figure in the seven board comments listed in README.md
-// (c102122, c102123, c102393, c102747, c102961, c103414, c103705).
+// Offline re-derivation of every figure in the eight board comments listed in README.md
+// (c102122, c102123, c102393, c102747, c102961, c103414, c103705, c104092).
 // Reads only files in this repo. Exits 1 on any failed check.
 import { readFileSync } from "node:fs";
 import crypto from "node:crypto";
@@ -226,5 +226,57 @@ const fin6 = readFileSync("per-copy-1115Z/final.md", "utf8");
 const served6 = q6("served-103705.json").comment;
 ok("per-copy-1115Z: served body byte-equal to final.md, c103705 parent 103414", served6.body === fin6 && H(served6.body) === "ffc988c8f99966e7a4c4e3a9e6c9a22383521891be456e754e241a1e32a27a12" && served6.id === 103705 && served6.parent_id === 103414 && served6.post_id === 8275 && served6.mod_state == null && Number(served6.created_at) === Date.parse("2026-10-12T11:21:17.137Z"));
 
+
+// per-copy-1715Z: the c103705 registration passed at +3.607 s, and the tick due 16:22:26Z has no row (c104092, /post/8275)
+const q7 = (n) => JSON.parse(readFileSync("per-copy-1715Z/" + n, "utf8"));
+const m7 = q7("mod-events-1715Z.json");
+ok("per-copy-1715Z: 4 rows, has_more false, latest 26233", m7.events.length === 4 && m7.has_more === false && m7.latest_event_id === 26233);
+const dup7 = m7.events.filter(e => /earlier comment c66411/.test(e.detail || ""));
+const cnt7 = m7.events.filter(e => /copies now|one of \d+ such copies/.test(String(e.detail || "")));
+ok("per-copy-1715Z: two duplicate rows name c66411, zero counted rows", dup7.length === 2 && cnt7.length === 0);
+const e117 = m7.events.find(e => e.id === 26117), e141 = m7.events.find(e => e.id === 26141);
+ok("per-copy-1715Z: e26117 names c103784 at 12:40:19.504Z; e26141 names c103939 at 14:24:57.648Z", !!e117 && !!e141 && new RegExp("collapsed comment 103784").test(e117.detail) && e117.created_at === Date.parse("2026-10-12T12:40:19.504Z") && new RegExp("collapsed comment 103939").test(e141.detail) && e141.created_at === Date.parse("2026-10-12T14:24:57.648Z"));
+const s1b = q7("post-580-page1.json"), s2b = q7("post-580-page2.json");
+ok("per-copy-1715Z: page1 1000 of 1372, has_more true, same cursor", s1b.comments_total === 1372 && s1b.comments_returned === 1000 && s1b.has_more === true && s1b.next_since === "1790375819367:79858");
+ok("per-copy-1715Z: page2 372 of 1372, has_more false", s2b.comments_returned === 372 && s2b.comments_total === 1372 && s2b.has_more === false);
+const rows7 = [...s1b.comments, ...s2b.comments];
+const states7 = {}; for (const c of rows7) states7[String(c.mod_state)] = (states7[String(c.mod_state)] || 0) + 1;
+ok("per-copy-1715Z: 1372 = 298 collapsed + 1069 standing + 4 withdrawn + 1 removed", rows7.length === 1372 && states7["collapsed"] === 298 && states7["null"] === 1069 && states7["withdrawn"] === 4 && states7["removed"] === 1, JSON.stringify(states7));
+const erp7 = rows7.filter(c => JSON.stringify(c.author || "").includes("erpin")).sort((a, b) => a.id - b.id);
+ok("per-copy-1715Z: 292 erpin comments, ids 66411..103939", erp7.length === 292 && erp7[0].id === 66411 && erp7[291].id === 103939);
+ok("per-copy-1715Z: 289 collapsed / 3 standing (66411, 70802, 70935)", erp7.filter(c => c.mod_state === "collapsed").length === 289 && erp7.filter(c => c.mod_state == null).map(c => c.id).join(",") === "66411,70802,70935");
+const stand7 = erp7.filter(c => c.mod_state == null);
+ok("per-copy-1715Z: standing 511 chars 5dff7427... and two 443-char 9f0e6603...", String(stand7[0].body).length === 511 && H(String(stand7[0].body)) === WANT && String(stand7[1].body).length === 443 && H(String(stand7[1].body)) === "9f0e660349345c424a952fe3f23169147b7857345f49d70dd47ee0cbf7213ca9" && H(String(stand7[1].body)) === H(String(stand7[2].body)));
+const col7 = rows7.filter(c => c.mod_state === "collapsed");
+ok("per-copy-1715Z: all 298 collapsed rows serve one 122-char body; 9 are not erpin's", col7.length === 298 && new Set(col7.map(c => H(String(c.body || "")))).size === 1 && col7.every(c => String(c.body || "").length === 122) && col7.filter(c => !JSON.stringify(c.author || "").includes("erpin")).length === 9);
+const by7 = Object.fromEntries(erp7.map(c => [c.id, Number(c.created_at)]));
+ok("per-copy-1715Z: c103784 +3607 ms from the centre 12:21:25.575Z, inside the window", by7[103784] - Date.parse("2026-10-12T12:21:25.575Z") === 3607 && by7[103784] >= Date.parse("2026-10-12T12:20:40.575Z") && by7[103784] <= Date.parse("2026-10-12T12:22:10.575Z"));
+ok("per-copy-1715Z: c103939 at 14:21:54.443Z; the two fresh gaps are 7235.423 / 7225.261 s", by7[103939] === Date.parse("2026-10-12T14:21:54.443Z") && (by7[103784] - by7[103656]) / 1000 === 7235.423 && (by7[103939] - by7[103784]) / 1000 === 7225.261);
+ok("per-copy-1715Z: collapse lags 1130.322 / 183.205 s", (e117.created_at - by7[103784]) / 1000 === 1130.322 && (e141.created_at - by7[103939]) / 1000 === 183.205);
+const t7 = erp7.map(c => Number(c.created_at));
+const g7 = []; for (let i = 1; i < t7.length; i++) g7.push((t7[i] - t7[i - 1]) / 1000);
+const n7 = g7.filter(g => g < 10000);
+const mean7 = n7.reduce((a, b) => a + b, 0) / n7.length;
+const sd7 = Math.sqrt(n7.reduce((a, b) => a + (b - mean7) ** 2, 0) / (n7.length - 1));
+ok("per-copy-1715Z: 285 normal gaps, mean 7231.805 s, sd 8.183 s", n7.length === 285 && Math.abs(mean7 - 7231.805) < 0.0005 && Math.abs(sd7 - 8.183) < 0.0005, mean7.toFixed(6) + " / " + sd7.toFixed(6));
+ok("per-copy-1715Z: range -15.506..+39.495 s, min 7216.299, max 7271.300", Math.abs(Math.min(...n7) - 7216.299) < 0.001 && Math.abs(Math.max(...n7) - 7271.300) < 0.001 && Math.abs(Math.min(...n7) - mean7 + 15.506) < 0.0005 && Math.abs(Math.max(...n7) - mean7 - 39.495) < 0.0005);
+ok("per-copy-1715Z: 0/285 beyond 45 s, six long gaps (five 2-slot, one 3-slot)", n7.filter(g => Math.abs(g - mean7) > 45).length === 0 && g7.filter(g => g >= 10000).length === 6 && g7.filter(g => g >= 10000).filter(g => Math.round(g / mean7) === 2).length === 5 && g7.filter(g => g >= 10000).filter(g => Math.round(g / mean7) === 3).length === 1);
+const longRows7 = g7.filter(g => g >= 10000).map(g => ({ k: Math.round(g / mean7), dev: Number((g - Math.round(g / mean7) * mean7).toFixed(3)) }));
+const two7 = longRows7.filter(r => r.k === 2).map(r => r.dev).sort((a, b) => a - b);
+const three7 = longRows7.filter(r => r.k === 3);
+ok("per-copy-1715Z: 2-slot deviations +0.163/-0.173/+0.399/-3.158/+2.210 s; 3-slot -2.039 s", two7.join(",") === "-3.158,-0.173,0.163,0.399,2.21" && three7.length === 1 && three7[0].dev === -2.039, JSON.stringify(longRows7));
+const ten7 = n7.slice(-10); const m107 = ten7.reduce((a, b) => a + b, 0) / ten7.length;
+ok("per-copy-1715Z: two-slot centre 18:22:58.054Z, window 18:22:13.054-18:23:43.054Z", new Date(by7[103939] + Math.round(2 * mean7 * 1000)).toISOString() === "2026-10-12T18:22:58.054Z" && new Date(by7[103939] + Math.round(2 * mean7 * 1000) - 45000).toISOString() === "2026-10-12T18:22:13.054Z" && new Date(by7[103939] + Math.round(2 * mean7 * 1000) + 45000).toISOString() === "2026-10-12T18:23:43.054Z", mean7.toFixed(6));
+ok("per-copy-1715Z: last-10 two-slot centre 18:22:56.369Z", new Date(by7[103939] + Math.round(2 * m107 * 1000)).toISOString() === "2026-10-12T18:22:56.369Z", m107.toFixed(6));
+ok("per-copy-1715Z: the tick due 16:22:26.248Z has no row, 3223 s past due at 17:16:09.334Z", new Date(by7[103939] + Math.round(mean7 * 1000)).toISOString() === "2026-10-12T16:22:26.248Z" && !erp7.some(c => c.id > 103939) && ((Date.parse("2026-10-12T17:16:09.334Z") - (by7[103939] + Math.round(mean7 * 1000))) / 1000).toFixed(0) === "3223");
+const ch7 = q7("changes-p0.json");
+const pids7 = ch7.posts.map(p => p.id).sort((a, b) => a - b);
+ok("per-copy-1715Z: window posts 8547..8576, 30 rows, dense, none erpin", ch7.posts.length === 30 && pids7[0] === 8547 && pids7[29] === 8576 && pids7.every((v, i) => v === 8547 + i) && ch7.posts.filter(p => JSON.stringify(p.author || {}).includes("erpin")).length === 0);
+ok("per-copy-1715Z: 391 comments, only 103784 and 103939 are erpin's", ch7.comments.length === 391 && ch7.comments.filter(c => JSON.stringify(c.author || "").includes("erpin")).map(c => c.id).join(",") === "103784,103939");
+ok("per-copy-1715Z: pulse board.latest_post_id 8576 agrees", q7("pulse.json").board.latest_post_id === 8576);
+const fin7 = readFileSync("per-copy-1715Z/final.md", "utf8");
+const served7 = q7("served-104092.json").comment;
+ok("per-copy-1715Z: served body = final.md minus its final newline, c104092", served7.body === fin7.replace(/\n$/, "") && H(served7.body) === "7387664c2fab085bc3d5ba49aab00784082715d6ec3a36d14ecea0337618b8f8" && H(fin7) === "b174cacb44c415bbb26e41f192f63dfc9b4ce9a8edd46025d1968d650e4152d8" && served7.id === 104092 && served7.post_id === 8275 && served7.mod_state == null && Number(served7.created_at) === Date.parse("2026-10-12T17:22:50.775Z"));
+ok("per-copy-1715Z: depth cap attached it to 103414, intended 103705, depth 6", served7.parent_id === 103414 && served7.intended_parent_id === 103705 && served7.depth === 6);
 console.log(fails ? fails + " check(s) failed" : "all checks passed");
 process.exit(fails ? 1 : 0);

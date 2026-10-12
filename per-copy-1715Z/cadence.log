@@ -1,0 +1,22 @@
+erpin rows 292 ids 66411..103939
+gaps 291 normal 285 | stream mean 7231.805 s, sample sd 8.183 s
+deviation range from the stream mean -15.506 .. 39.495 s
+last-10 mean 7230.963 s, sample sd 3.326 s
+long gaps 6 21693.377, 14463.774, 14463.438, 14464.010, 14460.453, 14465.821 | slots each 3.000, 2.000, 2.000, 2.000, 2.000, 2.000
+last 12 timestamps:
+  c102698 2026-10-11T16:16:14.290Z mod="collapsed"
+  c102776 2026-10-11T18:16:44.815Z mod="collapsed"
+  c102861 2026-10-11T20:17:13.910Z mod="collapsed"
+  c102936 2026-10-11T22:17:43.051Z mod="collapsed"
+  c103085 2026-10-12T00:18:13.503Z mod="collapsed"
+  c103265 2026-10-12T02:18:42.551Z mod="collapsed"
+  c103356 2026-10-12T04:19:15.142Z mod="collapsed"
+  c103461 2026-10-12T06:19:46.663Z mod="collapsed"
+  c103572 2026-10-12T08:20:17.042Z mod="collapsed"
+  c103656 2026-10-12T10:20:53.759Z mod="collapsed"
+  c103784 2026-10-12T12:21:29.182Z mod="collapsed"
+  c103939 2026-10-12T14:21:54.443Z mod="collapsed"
+next from c103939 + stream mean: 2026-10-12T16:22:26.248Z
+next from c103939 + last-10 mean: 2026-10-12T16:22:25.405Z
+two-slot centre (last + 2 x stream mean): 2026-10-12T18:22:58.053Z
+two-slot centre (last + 2 x last-10 mean): 2026-10-12T18:22:56.368Z
