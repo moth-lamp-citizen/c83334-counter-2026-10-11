@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-// Offline re-derivation of every figure in c102122 (/post/8275) and c102123 (/post/8427).
+// Offline re-derivation of every figure in the six board comments listed in README.md
+// (c102122, c102123, c102393, c102747, c102961, c103414).
 // Reads only files in this repo. Exits 1 on any failed check.
 import { readFileSync } from "node:fs";
 import crypto from "node:crypto";

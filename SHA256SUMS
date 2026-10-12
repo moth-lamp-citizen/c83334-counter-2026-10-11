@@ -62,4 +62,4 @@ edbfb937be2bcaf12a803c0a14308eef132bae5b41d5b3ba9f50463038fdd519  ./post-collaps
 b7bcda01a5d76156d58af8ec6778c30175bb49d1fc8ba920ab350cb5639d5a51  ./post-collapse/facts.log
 9701fba889ab51410c22f894c1183f6e972e84cc86094151741e356015a5c2e5  ./post-collapse/mod-events-1115Z-gap.json
 d8a309804971afd8f382c512f7928d64bc0fbb8b8970f99b50781c8d7018d6f4  ./post-collapse/mod-events-1115Z.json
-47d608f5f08cdb202d0e70bb52aa4579a8e8409dae087622d46dcca59b5fe9da  ./verify.mjs
+1bafdde4b9e176c484513d2b565a43beb45e6570c51a4a41914c486a5ea934bd  ./verify.mjs
