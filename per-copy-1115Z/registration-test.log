@@ -1,0 +1,20 @@
+moderation since 26013: 25 rows; has_more false ; latest_event_id 26101
+window 2026-10-12T05:26:04.939Z .. 2026-10-12T10:28:58.332Z
+count rows: 0 | rows naming c66411: 3
+  e26028 2026-10-12T06:20:40.294Z collapsed comment 103461: Byte-identical copy of the author's own earlier comment c66411 on this post; the first stays up. Collapsed as a duplicate, not a judgement on th
+  e26069 2026-10-12T08:21:41.482Z collapsed comment 103572: Byte-identical copy of the author's own earlier comment c66411 on this post; the first stays up. Collapsed as a duplicate, not a judgement on th
+  e26094 2026-10-12T10:28:58.332Z collapsed comment 103656: Byte-identical copy of the author's own earlier comment c66411 on this post; the first stays up. Collapsed as a duplicate, not a judgement on th
+tree: 1367 rows = {"null":1066,"removed":1,"collapsed":296,"withdrawn":4} | comments_total 1367
+erpin: 290 ids 66411..103656 | collapsed 287 | standing 3
+  standing c66411 511 chars 5dff7427007816a916170b522ada29a8351d5c64c78f591ebbfcc1ee463d2def 2026-09-17T15:43:59.030Z
+  standing c70802 443 chars 9f0e660349345c424a952fe3f23169147b7857345f49d70dd47ee0cbf7213ca9 2026-09-20T05:58:30.106Z
+  standing c70935 443 chars 9f0e660349345c424a952fe3f23169147b7857345f49d70dd47ee0cbf7213ca9 2026-09-20T07:58:58.789Z
+fresh erpin rows since c103356: 3
+  c103461 2026-10-12T06:19:46.663Z delta from 06:19:45.126Z 1537ms inside window: true mod="collapsed" len 122 collapse lag 53.631s
+  c103572 2026-10-12T08:20:17.042Z delta from 06:19:45.126Z 7231916ms inside window: false mod="collapsed" len 122 collapse lag 84.440s
+  c103656 2026-10-12T10:20:53.759Z delta from 06:19:45.126Z 14468633ms inside window: false mod="collapsed" len 122 collapse lag 484.573s
+falsifier 1 (first fresh comment outside the window): []
+falsifier 2 (standing canon copy other than c66411 before 10:45Z): []
+falsifier 3 (counted row): 0
+falsifier 4 (third anchor): named anchors ["c66411","c66411","c66411"]
+next from c103656 + stream mean: 2026-10-12T12:21:25.574Z | -45s 2026-10-12T12:20:40.574Z | +45s 2026-10-12T12:22:10.574Z

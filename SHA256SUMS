@@ -1,4 +1,4 @@
-c74e54d588a2bd64d86a1a8e1925d218d3f51ca2147d6d819f008244df479cc4  ./README.md
+099cfecd06bff625a9078a31f01bb3be76afadd998c024e4aa07b11e3b8fa089  ./README.md
 aff91eaed5e98a3f9449b7743f33a76ff053d47269b59ac4cc5729a53d9d969d  ./c83334-batch/c83334-rows.json
 f74b2f3b64eae4f57718aabca49da1f75b640acf0528b345b267a6b2bdf8ca01  ./c83334-batch/copies.json
 00d55194bfce7130fc7c62c93887ac4e341f7bbb8377477a2cc12f5212f40cdb  ./c83334-batch/mod-events-0515Z.json
@@ -28,6 +28,19 @@ a7180560ecc3ffbc24101d20086689a5a32741b927cdf769da4a521445317f2a  ./per-copy-051
 7e5e314d19f09335e6085cfdaf4ae6ff3400adc2678f6c725b24921bad7ef626  ./per-copy-0515Z/served-103414.json
 4c86b7ecea30ee2f7f392b5d444a6fdbe5ba409b3d2c8c2d3c761e0c3850a65c  ./per-copy-0515Z/window-calibration.log
 1489752a6bae5d6cacbf84e0bdfb4b278ab0a1e4ce461cdd0485e1aed735bbcb  ./per-copy-0515Z/window-calibration.mjs
+fe2bc1064f58e513648d7fb14dca27ac8776ee3016287b034c69bb287d6ba72c  ./per-copy-1115Z/cadence.log
+c8381b6515e39d1a3fa953f2a95f221da97088907a408519a499d9ffd0f26aff  ./per-copy-1115Z/cadence.mjs
+a1a0fb8e5b620a6c2c3ae4a6480ddd00fbaf5769775635eefbccf23efa68595b  ./per-copy-1115Z/changes-p0.json
+ffc988c8f99966e7a4c4e3a9e6c9a22383521891be456e754e241a1e32a27a12  ./per-copy-1115Z/final.md
+43769fc1d6b77af36171388ccb5880b63f1b34ab9c7c42843ce8cdcf32c56ad9  ./per-copy-1115Z/mod-events-1115Z.json
+3eaed50331ea3caaeaf33ca649d2675542bb28f1cade996ce5fb9731952877d7  ./per-copy-1115Z/post-580-page1.json
+cd35d56c3a34d8ef132e58ad803eea354a4be2805c3c7e9e2bf6fc1455e7f48e  ./per-copy-1115Z/post-580-page2.json
+488cb1f6f9537a8dcf1f522874bf630d7b6ce75acdc75e3ae6f91399f2837a27  ./per-copy-1115Z/pulse.json
+fb512f0245587d1e0aa80d71a7a533bc2f1daa1bbd07042358afe6295caf67bc  ./per-copy-1115Z/registration-test.log
+022186a94c028f2183424f47796e7cac9af82eefdcc9906f3e2d47fff0636b1a  ./per-copy-1115Z/registration-test.mjs
+3e69bb77e083dd9d7509e6fefd2485ffb67499adf64101b03dbaf214540e1943  ./per-copy-1115Z/served-103705.json
+d57e78f145c57b1918a2d20deaf55a9bf93c0d36bbc397593275bce7b85f889f  ./per-copy-1115Z/window-calibration.log
+34d63e66f1d56179a821b22a9038f700994258928bbb85df8d90cbe2e4d78d46  ./per-copy-1115Z/window-calibration.mjs
 25e79f5bff531822da90826ecc8655a80c5a3c991b98754a4767248b7b24c3f9  ./per-copy-2315Z/README.md
 a00eb230f29029a63a4af92c340635b968bb65c03fb1981227214f6ff6337a90  ./per-copy-2315Z/cadence.log
 913748e9566742f4211d0946ff193ae8455e48461da3bcfce6cabb6680e5b6ac  ./per-copy-2315Z/cadence.mjs
@@ -62,4 +75,4 @@ edbfb937be2bcaf12a803c0a14308eef132bae5b41d5b3ba9f50463038fdd519  ./post-collaps
 b7bcda01a5d76156d58af8ec6778c30175bb49d1fc8ba920ab350cb5639d5a51  ./post-collapse/facts.log
 9701fba889ab51410c22f894c1183f6e972e84cc86094151741e356015a5c2e5  ./post-collapse/mod-events-1115Z-gap.json
 d8a309804971afd8f382c512f7928d64bc0fbb8b8970f99b50781c8d7018d6f4  ./post-collapse/mod-events-1115Z.json
-1bafdde4b9e176c484513d2b565a43beb45e6570c51a4a41914c486a5ea934bd  ./verify.mjs
+c13f1614f3102ba53a369af1c49600fa005cfddfe60d0b0ce48110bd9d7ba068  ./verify.mjs

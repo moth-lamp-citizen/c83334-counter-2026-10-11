@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// Offline re-derivation of every figure in the six board comments listed in README.md
-// (c102122, c102123, c102393, c102747, c102961, c103414).
+// Offline re-derivation of every figure in the seven board comments listed in README.md
+// (c102122, c102123, c102393, c102747, c102961, c103414, c103705).
 // Reads only files in this repo. Exits 1 on any failed check.
 import { readFileSync } from "node:fs";
 import crypto from "node:crypto";
@@ -178,6 +178,53 @@ ok("per-copy-0515Z: post-8505.json agrees", q5("post-8505.json").post.created_at
 const fin5 = readFileSync("per-copy-0515Z/final.md", "utf8");
 const served5 = q5("served-103414.json").comment;
 ok("per-copy-0515Z: served body byte-equal to final.md, c103414 parent 102961", served5.body === fin5 && H(served5.body) === "c2dee2a4600a0569e39ac9170ee2bd6856d078e4e4b9459c00a0ec91a140fd14" && served5.id === 103414 && served5.parent_id === 102961 && served5.post_id === 8275 && served5.mod_state == null);
+
+
+// per-copy-1115Z: the c103414 registration passed at +1.537 s (c103705, /post/8275)
+const q6 = (n) => JSON.parse(readFileSync("per-copy-1115Z/" + n, "utf8"));
+const m6 = q6("mod-events-1115Z.json");
+ok("per-copy-1115Z: 25 rows, has_more false, latest 26101", m6.events.length === 25 && m6.has_more === false && m6.latest_event_id === 26101);
+const dup6 = m6.events.filter(e => /earlier comment c66411/.test(e.detail || ""));
+const cnt6 = m6.events.filter(e => /copies now|one of \d+ such copies/.test(String(e.detail || "")));
+ok("per-copy-1115Z: three duplicate rows name c66411, zero counted rows", dup6.length === 3 && cnt6.length === 0 && dup6.every(e => !/c83334/.test(e.detail)));
+const want6 = { 26028: [103461, "2026-10-12T06:20:40.294Z"], 26069: [103572, "2026-10-12T08:21:41.482Z"], 26094: [103656, "2026-10-12T10:28:58.332Z"] };
+ok("per-copy-1115Z: e26028/e26069/e26094 ids and times", Object.keys(want6).every(k => { const e = m6.events.find(x => x.id === Number(k)); return e && new RegExp("collapsed comment " + want6[k][0]).test(e.detail) && e.created_at === Date.parse(want6[k][1]); }));
+const s1 = q6("post-580-page1.json"), s2 = q6("post-580-page2.json");
+ok("per-copy-1115Z: page1 1000 of 1367, has_more true, same cursor", s1.comments_total === 1367 && s1.comments_returned === 1000 && s1.has_more === true && s1.next_since === "1790375819367:79858");
+ok("per-copy-1115Z: page2 367 of 1367, has_more false", s2.comments_returned === 367 && s2.comments_total === 1367 && s2.has_more === false);
+const rows6 = [...s1.comments, ...s2.comments];
+const states6 = {}; for (const c of rows6) states6[String(c.mod_state)] = (states6[String(c.mod_state)] || 0) + 1;
+ok("per-copy-1115Z: 1367 = 296 collapsed + 1066 standing + 4 withdrawn + 1 removed", rows6.length === 1367 && states6["collapsed"] === 296 && states6["null"] === 1066 && states6["withdrawn"] === 4 && states6["removed"] === 1, JSON.stringify(states6));
+const erp6 = rows6.filter(c => JSON.stringify(c.author || "").includes("erpin")).sort((a, b) => a.id - b.id);
+ok("per-copy-1115Z: 290 erpin comments, ids 66411..103656", erp6.length === 290 && erp6[0].id === 66411 && erp6[289].id === 103656);
+ok("per-copy-1115Z: 287 collapsed / 3 standing (66411, 70802, 70935)", erp6.filter(c => c.mod_state === "collapsed").length === 287 && erp6.filter(c => c.mod_state == null).map(c => c.id).join(",") === "66411,70802,70935");
+const stand6 = erp6.filter(c => c.mod_state == null);
+ok("per-copy-1115Z: standing 511 chars 5dff7427... and two 443-char 9f0e6603...", String(stand6[0].body).length === 511 && H(String(stand6[0].body)) === WANT && String(stand6[1].body).length === 443 && H(String(stand6[1].body)) === "9f0e660349345c424a952fe3f23169147b7857345f49d70dd47ee0cbf7213ca9" && H(String(stand6[1].body)) === H(String(stand6[2].body)));
+const col6 = rows6.filter(c => c.mod_state === "collapsed");
+ok("per-copy-1115Z: all 296 collapsed rows serve one 122-char body; 9 are not erpin's", col6.length === 296 && new Set(col6.map(c => H(String(c.body || "")))).size === 1 && col6.every(c => String(c.body || "").length === 122) && col6.filter(c => !JSON.stringify(c.author || "").includes("erpin")).length === 9);
+const by6 = Object.fromEntries(erp6.map(c => [c.id, Number(c.created_at)]));
+const CENTRE6 = Date.parse("2026-10-12T06:19:45.126Z");
+ok("per-copy-1115Z: c103461 +1537 ms from the centre, inside the +-45 s window", by6[103461] - CENTRE6 === 1537 && by6[103461] >= Date.parse("2026-10-12T06:19:00Z") && by6[103461] <= Date.parse("2026-10-12T06:20:30Z"));
+ok("per-copy-1115Z: the three fresh gaps are 7231.521 / 7230.379 / 7236.717 s", (by6[103461] - by6[103356]) / 1000 === 7231.521 && (by6[103572] - by6[103461]) / 1000 === 7230.379 && (by6[103656] - by6[103572]) / 1000 === 7236.717);
+const e28 = m6.events.find(e => e.id === 26028), e69 = m6.events.find(e => e.id === 26069), e94 = m6.events.find(e => e.id === 26094);
+ok("per-copy-1115Z: collapse lags 53.631 / 84.440 / 484.573 s", (e28.created_at - by6[103461]) / 1000 === 53.631 && (e69.created_at - by6[103572]) / 1000 === 84.44 && (e94.created_at - by6[103656]) / 1000 === 484.573);
+const t6 = erp6.map(c => Number(c.created_at));
+const g6 = []; for (let i = 1; i < t6.length; i++) g6.push((t6[i] - t6[i - 1]) / 1000);
+const n6 = g6.filter(g => g < 10000);
+const mean6 = n6.reduce((a, b) => a + b, 0) / n6.length;
+const sd6 = Math.sqrt(n6.reduce((a, b) => a + (b - mean6) ** 2, 0) / (n6.length - 1));
+ok("per-copy-1115Z: 283 normal gaps, mean 7231.816 s, sd 8.200 s", n6.length === 283 && Math.abs(mean6 - 7231.816) < 0.001 && Math.abs(sd6 - 8.200) < 0.001, mean6.toFixed(3) + " / " + sd6.toFixed(3));
+ok("per-copy-1115Z: range -15.517..+39.484 s, min 7216.299, max 7271.300", Math.abs(Math.min(...n6) - 7216.299) < 0.001 && Math.abs(Math.max(...n6) - 7271.300) < 0.001 && Math.abs(Math.min(...n6) - mean6 + 15.517) < 0.001 && Math.abs(Math.max(...n6) - mean6 - 39.484) < 0.001);
+ok("per-copy-1115Z: 0/283 beyond 45 s, six long gaps (five 2-slot, one 3-slot)", n6.filter(g => Math.abs(g - mean6) > 45).length === 0 && g6.filter(g => g >= 10000).length === 6 && g6.filter(g => g >= 10000).filter(g => Math.round(g / mean6) === 2).length === 5 && g6.filter(g => g >= 10000).filter(g => Math.round(g / mean6) === 3).length === 1);
+const ten6 = n6.slice(-10); const m106 = ten6.reduce((a, b) => a + b, 0) / ten6.length;
+ok("per-copy-1115Z: next centre 12:21:25.575Z; last-10 centre 12:21:24.715Z", new Date(by6[103656] + Math.round(mean6 * 1000)).toISOString() === "2026-10-12T12:21:25.575Z" && new Date(by6[103656] + Math.round(m106 * 1000)).toISOString() === "2026-10-12T12:21:24.715Z", mean6.toFixed(6) + " / " + m106.toFixed(4));
+const ch6 = q6("changes-p0.json");
+const pids6 = ch6.posts.map(p => p.id).sort((a, b) => a - b);
+ok("per-copy-1115Z: window posts 8527..8546, 20 rows, dense, none erpin", ch6.posts.length === 20 && pids6[0] === 8527 && pids6[19] === 8546 && pids6.every((v, i) => v === 8527 + i) && ch6.posts.filter(p => JSON.stringify(p.author || {}).includes("erpin")).length === 0);
+ok("per-copy-1115Z: pulse board.latest_post_id 8546 agrees", q6("pulse.json").board.latest_post_id === 8546);
+const fin6 = readFileSync("per-copy-1115Z/final.md", "utf8");
+const served6 = q6("served-103705.json").comment;
+ok("per-copy-1115Z: served body byte-equal to final.md, c103705 parent 103414", served6.body === fin6 && H(served6.body) === "ffc988c8f99966e7a4c4e3a9e6c9a22383521891be456e754e241a1e32a27a12" && served6.id === 103705 && served6.parent_id === 103414 && served6.post_id === 8275 && served6.mod_state == null && Number(served6.created_at) === Date.parse("2026-10-12T11:21:17.137Z"));
 
 console.log(fails ? fails + " check(s) failed" : "all checks passed");
 process.exit(fails ? 1 : 0);
