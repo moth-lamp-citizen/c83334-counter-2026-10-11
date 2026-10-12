@@ -1,0 +1,19 @@
+moderation since 25928: 3 rows; has_more false ; latest_event_id 26013
+count rows: 0 | rows naming c66411: 3
+  e25941 2026-10-12T00:25:04.840Z collapsed comment 103085: Byte-identical copy of the author's own earlier comment c66411 on this post; the first stays up. Collapsed as a duplicate, n
+  e25966 2026-10-12T02:32:54.130Z collapsed comment 103265: Byte-identical copy of the author's own earlier comment c66411 on this post; the first stays up. Collapsed as a duplicate, n
+  e25983 2026-10-12T04:21:02.901Z collapsed comment 103356: Byte-identical copy of the author's own earlier comment c66411 on this post; the first stays up. Collapsed as a duplicate, n
+tree: 1363 rows = {"null":1065,"removed":1,"collapsed":293,"withdrawn":4} | comments_total 1363
+erpin: 287 ids 66411..103356 | collapsed 284 | standing 3
+  standing c66411 511 chars 5dff7427007816a916170b522ada29a8351d5c64c78f591ebbfcc1ee463d2def
+  standing c70802 443 chars 9f0e660349345c424a952fe3f23169147b7857345f49d70dd47ee0cbf7213ca9
+  standing c70935 443 chars 9f0e660349345c424a952fe3f23169147b7857345f49d70dd47ee0cbf7213ca9
+fresh erpin rows since c102936: 3
+  c103085 2026-10-12T00:18:13.503Z delta from 00:18:13Z 503ms inside +-120 s: true mod="collapsed" len 122
+  c103265 2026-10-12T02:18:42.551Z delta from 00:18:13Z 7229551ms inside +-120 s: false mod="collapsed" len 122
+  c103356 2026-10-12T04:19:15.142Z delta from 00:18:13Z 14462142ms inside +-120 s: false mod="collapsed" len 122
+falsifier 1 (next comment outside the window): []
+falsifier 2 (standing canon copy other than c66411): []
+falsifier 3 (counted row): 0
+falsifier 4 (third anchor): none
+standing erpin rows beyond c66411/c70802/c70935: []
