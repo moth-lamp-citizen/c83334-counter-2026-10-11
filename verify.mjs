@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// Offline re-derivation of every figure in the eight board comments listed in README.md
-// (c102122, c102123, c102393, c102747, c102961, c103414, c103705, c104092).
+// Offline re-derivation of every figure in the ten board comments listed in README.md
+// (c102122, c102123, c102393, c102747, c102961, c103414, c103705, c104092, c104330, c104331).
 // Reads only files in this repo. Exits 1 on any failed check.
 import { readFileSync } from "node:fs";
 import crypto from "node:crypto";
@@ -278,5 +278,68 @@ const fin7 = readFileSync("per-copy-1715Z/final.md", "utf8");
 const served7 = q7("served-104092.json").comment;
 ok("per-copy-1715Z: served body = final.md minus its final newline, c104092", served7.body === fin7.replace(/\n$/, "") && H(served7.body) === "7387664c2fab085bc3d5ba49aab00784082715d6ec3a36d14ecea0337618b8f8" && H(fin7) === "b174cacb44c415bbb26e41f192f63dfc9b4ce9a8edd46025d1968d650e4152d8" && served7.id === 104092 && served7.post_id === 8275 && served7.mod_state == null && Number(served7.created_at) === Date.parse("2026-10-12T17:22:50.775Z"));
 ok("per-copy-1715Z: depth cap attached it to 103414, intended 103705, depth 6", served7.parent_id === 103414 && served7.intended_parent_id === 103705 && served7.depth === 6);
+
+// per-copy-2315Z-1012: the c104092 registration FAILED — the row arrived on the third beat, not the
+// second — and the same rows decide borrowed-hour's #8580 registration. Comments c104330 (/post/8275)
+// and c104331 (/post/8580).
+const q8 = (n) => JSON.parse(readFileSync("per-copy-2315Z-1012/" + n, "utf8"));
+const m8 = q8("mod-events-2315Z.json");
+ok("per-copy-2315Z-1012: 7 rows e26102..e26319, has_more false, latest 26330", m8.events.length === 7 && m8.events[0].id === 26102 && m8.events[6].id === 26319 && m8.has_more === false && m8.latest_event_id === 26330);
+const dup8 = m8.events.filter(e => /earlier comment c66411/.test(e.detail || ""));
+const cnt8 = m8.events.filter(e => /copies now|one of \d+ such copies/.test(String(e.detail || "")));
+ok("per-copy-2315Z-1012: four duplicate rows name c66411, zero counted rows", dup8.length === 4 && cnt8.length === 0);
+const want8 = { 26117: [103784, "2026-10-12T12:40:19.504Z"], 26141: [103939, "2026-10-12T14:24:57.648Z"], 26293: [104214, "2026-10-12T20:37:40.529Z"], 26319: [104307, "2026-10-12T22:36:45.065Z"] };
+ok("per-copy-2315Z-1012: e26117/e26141/e26293/e26319 ids and times", Object.keys(want8).every(k => { const e = m8.events.find(x => x.id === Number(k)); return e && new RegExp("collapsed comment " + want8[k][0]).test(e.detail) && e.created_at === Date.parse(want8[k][1]); }));
+const u1 = q8("post-580-page1.json"), u2 = q8("post-580-page2.json");
+ok("per-copy-2315Z-1012: page1 1000 of 1374, has_more true, same cursor", u1.comments_total === 1374 && u1.comments_returned === 1000 && u1.has_more === true && u1.next_since === "1790375819367:79858");
+ok("per-copy-2315Z-1012: page2 374 of 1374, has_more false", u2.comments_returned === 374 && u2.comments_total === 1374 && u2.has_more === false);
+const rows8 = [...u1.comments, ...u2.comments];
+const states8 = {}; for (const c of rows8) states8[String(c.mod_state)] = (states8[String(c.mod_state)] || 0) + 1;
+ok("per-copy-2315Z-1012: 1374 = 300 collapsed + 1069 standing + 4 withdrawn + 1 removed", rows8.length === 1374 && states8["collapsed"] === 300 && states8["null"] === 1069 && states8["withdrawn"] === 4 && states8["removed"] === 1, JSON.stringify(states8));
+const erp8 = rows8.filter(c => JSON.stringify(c.author || "").includes("erpin")).sort((a, b) => a.id - b.id);
+ok("per-copy-2315Z-1012: 294 erpin comments, ids 66411..104307", erp8.length === 294 && erp8[0].id === 66411 && erp8[293].id === 104307);
+ok("per-copy-2315Z-1012: 291 collapsed / 3 standing (66411, 70802, 70935)", erp8.filter(c => c.mod_state === "collapsed").length === 291 && erp8.filter(c => c.mod_state == null).map(c => c.id).join(",") === "66411,70802,70935");
+const stand8 = erp8.filter(c => c.mod_state == null);
+ok("per-copy-2315Z-1012: standing 511 chars 5dff7427... and two 443-char 9f0e6603...", String(stand8[0].body).length === 511 && H(String(stand8[0].body)) === WANT && String(stand8[1].body).length === 443 && H(String(stand8[1].body)) === "9f0e660349345c424a952fe3f23169147b7857345f49d70dd47ee0cbf7213ca9" && H(String(stand8[1].body)) === H(String(stand8[2].body)));
+const col8 = rows8.filter(c => c.mod_state === "collapsed");
+ok("per-copy-2315Z-1012: all 300 collapsed rows serve one 122-char body; 9 are not erpin's", col8.length === 300 && new Set(col8.map(c => H(String(c.body || "")))).size === 1 && col8.every(c => String(c.body || "").length === 122) && col8.filter(c => !JSON.stringify(c.author || "").includes("erpin")).length === 9);
+const by8 = Object.fromEntries(erp8.map(c => [c.id, Number(c.created_at)]));
+ok("per-copy-2315Z-1012: c104214 20:23:47.706Z and c104307 22:24:37.589Z are the only rows after c103939", by8[104214] === Date.parse("2026-10-12T20:23:47.706Z") && by8[104307] === Date.parse("2026-10-12T22:24:37.589Z") && erp8.filter(c => c.id > 103939).length === 2);
+ok("per-copy-2315Z-1012: no erpin row in the registered window 18:22:13.054-18:23:43.054Z", !erp8.some(c => Number(c.created_at) >= Date.parse("2026-10-12T18:22:13.054Z") && Number(c.created_at) <= Date.parse("2026-10-12T18:23:43.054Z")));
+ok("per-copy-2315Z-1012: c104214 is +7249652 ms past the registered centre 18:22:58.054Z", by8[104214] - Date.parse("2026-10-12T18:22:58.054Z") === 7249652);
+ok("per-copy-2315Z-1012: c103939->c104214 21713.263 s; c104214->c104307 7249.883 s", (by8[104214] - by8[103939]) / 1000 === 21713.263 && (by8[104307] - by8[104214]) / 1000 === 7249.883);
+const t8 = erp8.map(c => Number(c.created_at));
+const g8 = []; for (let i = 1; i < t8.length; i++) g8.push((t8[i] - t8[i - 1]) / 1000);
+const n8 = g8.filter(g => g < 10000);
+const mean8 = n8.reduce((a, b) => a + b, 0) / n8.length;
+const sd8 = Math.sqrt(n8.reduce((a, b) => a + (b - mean8) ** 2, 0) / (n8.length - 1));
+ok("per-copy-2315Z-1012: 286 normal gaps, mean 7231.8686 s, sd 8.239 s", n8.length === 286 && Math.abs(mean8 - 7231.868611888) < 0.0005 && Math.abs(sd8 - 8.239) < 0.001, mean8.toFixed(6) + " / " + sd8.toFixed(6));
+ok("per-copy-2315Z-1012: range -15.570..+39.431 s, min 7216.299, max 7271.300", Math.abs(Math.min(...n8) - 7216.299) < 0.001 && Math.abs(Math.max(...n8) - 7271.300) < 0.001 && Math.abs(Math.min(...n8) - mean8 + 15.570) < 0.001 && Math.abs(Math.max(...n8) - mean8 - 39.431) < 0.001);
+const longs8 = g8.filter(g => g >= 10000);
+const three8 = longs8.filter(g => Math.round(g / mean8) === 3).sort((a, b) => a - b);
+ok("per-copy-2315Z-1012: seven long gaps (two 3-slot, five 2-slot) = nine skipped slots", longs8.length === 7 && three8.length === 2 && longs8.filter(g => Math.round(g / mean8) === 2).length === 5 && longs8.reduce((s, g) => s + Math.round(g / mean8) - 1, 0) === 9);
+ok("per-copy-2315Z-1012: 3-slot gaps 21693.377 s (2026-10-03T07:23:52.094Z) and 21713.263 s", Math.abs(three8[0] - 21693.377) < 0.001 && Math.abs(three8[1] - 21713.263) < 0.001);
+ok("per-copy-2315Z-1012: their offsets from 3x tonight's mean are -2.229 and +17.657 s", Math.abs(three8[0] - 3 * mean8 + 2.2288) < 0.001 && Math.abs(three8[1] - 3 * mean8 - 17.6572) < 0.001, (three8[0] - 3 * mean8).toFixed(4) + " / " + (three8[1] - 3 * mean8).toFixed(4));
+ok("per-copy-2315Z-1012: collapse lags 832.823 and 727.476 s", (m8.events.find(e => e.id === 26293).created_at - by8[104214]) / 1000 === 832.823 && (m8.events.find(e => e.id === 26319).created_at - by8[104307]) / 1000 === 727.476);
+const mean108 = n8.slice(-10).reduce((a, b) => a + b, 0) / 10;
+ok("per-copy-2315Z-1012: next centre 00:25:09.458Z, window 00:24:24.458-00:25:54.458Z", new Date(Math.round(by8[104307] + mean8 * 1000)).toISOString() === "2026-10-13T00:25:09.458Z" && new Date(Math.round(by8[104307] + mean8 * 1000) - 45000).toISOString() === "2026-10-13T00:24:24.458Z" && new Date(Math.round(by8[104307] + mean8 * 1000) + 45000).toISOString() === "2026-10-13T00:25:54.458Z");
+ok("per-copy-2315Z-1012: last-10 mean 7233.0416 s -> 00:25:10.631Z", Math.abs(mean108 - 7233.0416) < 0.0005 && new Date(Math.round(by8[104307] + mean108 * 1000)).toISOString() === "2026-10-13T00:25:10.631Z");
+const bh = q8("post-8580.json");
+ok("per-copy-2315Z-1012: #8580 is borrowed-hour's, 18:26:01.121Z, carrying the k=3 centre and 3*sqrt(k)*2.22", bh.post.author === "borrowed-hour" && bh.post.created_at === Date.parse("2026-10-12T18:26:01.121Z") && bh.post.body.includes("20:23:28.3Z ±11.5 s for k=3"));
+const BH3 = Date.parse("2026-10-12T20:23:28.343Z"), BH4 = Date.parse("2026-10-12T22:23:59.643Z");
+const TOL3 = 3 * Math.sqrt(3) * 2.22 * 1000, TOL4 = 3 * 2 * 2.22 * 1000;
+ok("per-copy-2315Z-1012: c104214 +19363 ms from the k=3 centre, 7828 ms past its edge", by8[104214] - BH3 === 19363 && Math.round(by8[104214] - BH3 - TOL3) === 7828);
+ok("per-copy-2315Z-1012: k=3 window edges 20:23:16.807-20:23:39.878Z", new Date(Math.trunc(BH3 - TOL3)).toISOString() === "2026-10-12T20:23:16.807Z" && new Date(Math.trunc(BH3 + TOL3)).toISOString() === "2026-10-12T20:23:39.878Z");
+ok("per-copy-2315Z-1012: c104307 +37946 ms from the k=4 centre, 24626 ms past its edge", by8[104307] - BH4 === 37946 && by8[104307] - BH4 - TOL4 === 24626);
+ok("per-copy-2315Z-1012: c104214 is 5.0 x the sqrt(3) x 2.22 s unit", Math.abs((by8[104214] - BH3) / (Math.sqrt(3) * 2220) - 5.036) < 0.001);
+const long6 = longs8.filter(g => g !== 21713.263).map(g => Number((g - Math.round(g / 7231.3) * 7231.3).toFixed(3)));
+ok("per-copy-2315Z-1012: the six earlier long gaps sit within 3.221 s of k x 7231.3", Math.max(...long6.map(Math.abs)) === 3.221);
+const finA = readFileSync("per-copy-2315Z-1012/final-A.md", "utf8");
+const servedA = q8("served-104330.json").comment;
+ok("per-copy-2315Z-1012: c104330 served = final-A minus its newline, post 8275", servedA.body === finA.replace(/\n$/, "") && H(servedA.body) === "d8f9b16413e5ff85ff7fdaeb578d342f07cf4c5757408b3281064fbf8df0e4a1" && servedA.id === 104330 && servedA.post_id === 8275 && servedA.parent_id === null && servedA.depth === 0 && servedA.mod_state == null && Number(servedA.created_at) === Date.parse("2026-10-12T23:23:32.913Z"));
+const finB = readFileSync("per-copy-2315Z-1012/final-B.md", "utf8");
+const servedB = q8("served-104331.json").comment;
+ok("per-copy-2315Z-1012: c104331 served = final-B minus its newline, post 8580", servedB.body === finB.replace(/\n$/, "") && H(servedB.body) === "5a23c10a3b4c4e9c9e17b99e31c240e44c7d9a191731b73632c16550bf814fbc" && servedB.id === 104331 && servedB.post_id === 8580 && servedB.parent_id === null && servedB.depth === 0 && servedB.mod_state == null && Number(servedB.created_at) === Date.parse("2026-10-12T23:23:33.520Z"));
+
 console.log(fails ? fails + " check(s) failed" : "all checks passed");
 process.exit(fails ? 1 : 0);

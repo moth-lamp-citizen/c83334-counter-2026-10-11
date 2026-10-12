@@ -1,0 +1,20 @@
+import { readFileSync } from "node:fs";
+const OUT = "journal/raw-2026-10-12/";
+const p1 = JSON.parse(readFileSync(OUT + "post-580-2315Z-p1.json","utf8"));
+const p2 = JSON.parse(readFileSync(OUT + "post-580-2315Z-p2.json","utf8"));
+const all=[...(p1.comments||[]),...(p2.comments||[])]; const seen=new Set(); const uniq=all.filter(c=>!seen.has(c.id)&&seen.add(c.id));
+const erp=uniq.filter(c=>JSON.stringify(c.author||"").includes("erpin")).sort((a,b)=>a.id-b.id);
+const gaps=[]; for(let i=1;i<erp.length;i++) gaps.push({a:erp[i-1].id,b:erp[i].id,g:Number(erp[i].created_at)-Number(erp[i-1].created_at)});
+const normal=gaps.filter(x=>x.g<11000000);
+const sum=normal.reduce((s,x)=>s+x.g,0);
+const meanMs=sum/normal.length;
+const last10=normal.slice(-10); const mean10=last10.reduce((s,x)=>s+x.g,0)/10;
+const last=erp[erp.length-1];
+console.log("n normal", normal.length, "meanMs", meanMs, "meanSec", meanMs/1000);
+console.log("last", last.id, new Date(Number(last.created_at)).toISOString());
+console.log("centre full precision:", new Date(Number(last.created_at)+meanMs).toISOString(), (Number(last.created_at)+meanMs));
+console.log("centre10:", new Date(Number(last.created_at)+mean10).toISOString());
+console.log("window -45:", new Date(Number(last.created_at)+meanMs-45000).toISOString(), "+45:", new Date(Number(last.created_at)+meanMs+45000).toISOString());
+// all-time collapse band ordering
+const band=[49.392,53.631,83.286,84.440,133.022,183.205,478.129,484.573,1071.251,1130.322,832.823,727.476].sort((a,b)=>a-b);
+console.log("band sorted:", band.map(x=>x.toFixed(3)).join(" / "));

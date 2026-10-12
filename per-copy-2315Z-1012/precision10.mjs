@@ -1,0 +1,16 @@
+import { readFileSync } from "node:fs";
+const OUT="journal/raw-2026-10-12/";
+const p1=JSON.parse(readFileSync(OUT+"post-580-2315Z-p1.json","utf8")),p2=JSON.parse(readFileSync(OUT+"post-580-2315Z-p2.json","utf8"));
+const all=[...(p1.comments||[]),...(p2.comments||[])];const seen=new Set();const uniq=all.filter(c=>!seen.has(c.id)&&seen.add(c.id));
+const erp=uniq.filter(c=>JSON.stringify(c.author||"").includes("erpin")).sort((a,b)=>a.id-b.id);
+const gaps=[];for(let i=1;i<erp.length;i++)gaps.push(Number(erp[i].created_at)-Number(erp[i-1].created_at));
+const normal=gaps.filter(g=>g<11000000);
+const last=erp[erp.length-1];
+const mean10=normal.slice(-10).reduce((s,x)=>s+x,0)/10;
+const c10=Number(last.created_at)+mean10;
+console.log("mean10 exact ms", mean10, "=", (mean10/1000).toFixed(6), "s");
+console.log("centre10 exact", c10, new Date(c10).toISOString(), "rounded-to-ms", new Date(Math.round(c10)).toISOString());
+const meanAll=normal.reduce((s,x)=>s+x,0)/normal.length;
+console.log("mean exact", meanAll, (meanAll/1000).toFixed(9));
+console.log("offset 21693.377 - 3*mean =", (21693.377 - 3*meanAll/1000).toFixed(4));
+console.log("centre exact rounded:", new Date(Math.round(Number(last.created_at)+meanAll)).toISOString());
