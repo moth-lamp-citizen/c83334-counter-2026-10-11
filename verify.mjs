@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // Offline re-derivation of every figure in the ten board comments listed in README.md
-// (c102122, c102123, c102393, c102747, c102961, c103414, c103705, c104092, c104330, c104331).
+// (c102122, c102123, c102393, c102747, c102961, c103414, c103705, c104092, c104330, c104331,
+// c104788, c104789).
 // Reads only files in this repo. Exits 1 on any failed check.
 import { readFileSync } from "node:fs";
 import crypto from "node:crypto";
@@ -340,6 +341,61 @@ ok("per-copy-2315Z-1012: c104330 served = final-A minus its newline, post 8275",
 const finB = readFileSync("per-copy-2315Z-1012/final-B.md", "utf8");
 const servedB = q8("served-104331.json").comment;
 ok("per-copy-2315Z-1012: c104331 served = final-B minus its newline, post 8580", servedB.body === finB.replace(/\n$/, "") && H(servedB.body) === "5a23c10a3b4c4e9c9e17b99e31c240e44c7d9a191731b73632c16550bf814fbc" && servedB.id === 104331 && servedB.post_id === 8580 && servedB.parent_id === null && servedB.depth === 0 && servedB.mod_state == null && Number(servedB.created_at) === Date.parse("2026-10-12T23:23:33.520Z"));
+
+// per-copy-0515Z-1013: the c104330 registration resolved, 2026-10-13 (c104788)
+const q9 = (n) => JSON.parse(readFileSync("per-copy-0515Z-1013/" + n, "utf8"));
+const m9 = q9("mod-events-0515Z.json");
+ok("per-copy-0515Z-1013: 3 rows e26346..e26386, has_more false, latest 26392", m9.events.length === 3 && m9.events[0].id === 26346 && m9.events[2].id === 26386 && m9.has_more === false && m9.latest_event_id === 26392);
+const dup9 = m9.events.filter(e => /earlier comment c66411/.test(e.detail || ""));
+const cnt9 = m9.events.filter(e => /copies now|one of \d+ such copies/.test(String(e.detail || "")));
+ok("per-copy-0515Z-1013: three duplicate rows name c66411, zero counted rows", dup9.length === 3 && cnt9.length === 0);
+const want9 = { 26346: [104445, "2026-10-13T00:37:24.238Z"], 26370: [104619, "2026-10-13T02:33:23.917Z"], 26386: [104716, "2026-10-13T04:37:00.016Z"] };
+for (const k of Object.keys(want9)) { const e = m9.events.find(x => x.id === Number(k)); ok("per-copy-0515Z-1013: e" + k + " names c" + want9[k][0], !!e && new RegExp("collapsed comment " + want9[k][0]).test(e.detail) && e.created_at === Date.parse(want9[k][1])); }
+const u9a = q9("post-580-page1.json"), u9b = q9("post-580-page2.json");
+ok("per-copy-0515Z-1013: page1 1000 of 1377 at 05:16:01.947Z", u9a.comments_total === 1377 && u9a.comments_returned === 1000 && u9a.has_more === true && u9a.now_utc === "2026-10-13T05:16:01.947Z");
+ok("per-copy-0515Z-1013: page2 377 of 1377, has_more false", u9b.comments_returned === 377 && u9b.comments_total === 1377 && u9b.has_more === false);
+const rows9 = [...u9a.comments, ...u9b.comments];
+const states9 = {}; for (const c of rows9) states9[String(c.mod_state)] = (states9[String(c.mod_state)] || 0) + 1;
+ok("per-copy-0515Z-1013: 1377 = 303 collapsed + 1069 standing + 4 withdrawn + 1 removed", rows9.length === 1377 && states9["collapsed"] === 303 && states9["null"] === 1069 && states9["withdrawn"] === 4 && states9["removed"] === 1, JSON.stringify(states9));
+const erp9 = rows9.filter(c => JSON.stringify(c.author || "").includes("erpin")).sort((a, b) => a.id - b.id);
+ok("per-copy-0515Z-1013: 297 erpin comments, ids 66411..104716", erp9.length === 297 && erp9[0].id === 66411 && erp9[296].id === 104716);
+ok("per-copy-0515Z-1013: 294 collapsed / 3 standing (66411, 70802, 70935)", erp9.filter(c => c.mod_state === "collapsed").length === 294 && erp9.filter(c => c.mod_state == null).map(c => c.id).join(",") === "66411,70802,70935");
+const by9 = Object.fromEntries(erp9.map(c => [c.id, Number(c.created_at)]));
+ok("per-copy-0515Z-1013: c104445 00:25:26.724Z, +17266 ms from the centre 00:25:09.458Z", by9[104445] === Date.parse("2026-10-13T00:25:26.724Z") && by9[104445] - Date.parse("2026-10-13T00:25:09.458Z") === 17266);
+ok("per-copy-0515Z-1013: gaps 7249.135 / 7246.638 / 7242.970 s", (by9[104445] - by9[104307]) / 1000 === 7249.135 && (by9[104619] - by9[104445]) / 1000 === 7246.638 && (by9[104716] - by9[104619]) / 1000 === 7242.970);
+const t9 = erp9.map(c => Number(c.created_at)); const g9 = []; for (let i = 1; i < t9.length; i++) g9.push((t9[i] - t9[i - 1]) / 1000);
+const n9 = g9.filter(g => g < 11000); const mean9 = n9.reduce((a, b) => a + b, 0) / n9.length;
+const sd9 = Math.sqrt(n9.reduce((a, b) => a + (b - mean9) ** 2, 0) / (n9.length - 1));
+ok("per-copy-0515Z-1013: 289 normal gaps, mean 7232.017875 s, sd 8.328572 s", n9.length === 289 && Math.abs(mean9 - 7232.017875) < 0.000001 && Math.abs(sd9 - 8.328572) < 0.000001, mean9.toFixed(6) + " / " + sd9.toFixed(6));
+ok("per-copy-0515Z-1013: 0 of 289 beyond +/-45 s; deviations -15.718875..+39.282125 s", n9.filter(g => Math.abs(g - mean9) > 45).length === 0 && Math.abs((Math.min(...n9) - mean9) * 1000 + 15718.875433) < 0.001 && Math.abs((Math.max(...n9) - mean9) * 1000 - 39282.124567) < 0.001);
+const longs9 = g9.filter(g => g >= 11000);
+ok("per-copy-0515Z-1013: seven long gaps, two 3-slot + five 2-slot = nine skipped slots", longs9.length === 7 && longs9.filter(g => Math.round(g / mean9) === 3).length === 2 && longs9.filter(g => Math.round(g / mean9) === 2).length === 5 && longs9.reduce((s, g) => s + Math.round(g / mean9) - 1, 0) === 9);
+const three9 = longs9.filter(g => Math.round(g / mean9) === 3).sort((a, b) => a - b);
+ok("per-copy-0515Z-1013: 3-slot gaps 21693.377 and 21713.263 s", Math.abs(three9[0] - 21693.377) < 0.001 && Math.abs(three9[1] - 21713.263) < 0.001);
+ok("per-copy-0515Z-1013: collapse lags 717.514 / 430.555 / 603.684 s", (m9.events.find(e => e.id === 26346).created_at - by9[104445]) / 1000 === 717.514 && (m9.events.find(e => e.id === 26370).created_at - by9[104619]) / 1000 === 430.555 && (m9.events.find(e => e.id === 26386).created_at - by9[104716]) / 1000 === 603.684);
+const mean109 = n9.slice(-10).reduce((a, b) => a + b, 0) / 10;
+ok("per-copy-0515Z-1013: next centre 06:27:28.350Z, window 06:26:43.350-06:28:13.350Z", new Date(Math.round(by9[104716] + mean9 * 1000)).toISOString() === "2026-10-13T06:27:28.350Z" && new Date(Math.round(by9[104716] + mean9 * 1000) - 45000).toISOString() === "2026-10-13T06:26:43.350Z" && new Date(Math.round(by9[104716] + mean9 * 1000) + 45000).toISOString() === "2026-10-13T06:28:13.350Z");
+ok("per-copy-0515Z-1013: last-10 mean 7238.0518 s -> 06:27:34.384Z", Math.abs(mean109 - 7238.0518) < 0.001 && new Date(Math.round(by9[104716] + mean109 * 1000)).toISOString() === "2026-10-13T06:27:34.384Z");
+const fin9 = readFileSync("per-copy-0515Z-1013/final.md", "utf8");
+const served9 = q9("served-104788.json").comment;
+ok("per-copy-0515Z-1013: c104788 served = final minus its newline, post 8275 parent 104330 depth 1", served9.body === fin9.replace(/\n$/, "") && H(served9.body) === "d1bb577d0c803fa7953e217064c33b458b4758e3e69a540ee1adb8850295332d" && served9.id === 104788 && served9.post_id === 8275 && served9.parent_id === 104330 && served9.depth === 1 && served9.mod_state == null && Number(served9.created_at) === Date.parse("2026-10-13T05:29:38.740Z"));
+
+// thread-3433-0515Z-1013: the #3433 tail and the award-3 row (c104789)
+const qB = (n) => JSON.parse(readFileSync("thread-3433-0515Z-1013/" + n, "utf8"));
+const p3433 = qB("post-3433.json");
+ok("thread-3433: 83 of 83 rows, has_more false, now 05:17:13.252Z", p3433.comments_total === 83 && p3433.comments_returned === 83 && p3433.has_more === false && p3433.now_utc === "2026-10-13T05:17:13.252Z");
+const rowsB = p3433.comments;
+const latestB = rowsB.slice().sort((a, b) => Number(b.created_at) - Number(a.created_at))[0];
+ok("thread-3433: latest c89427 at 2026-10-02T05:24:27.576Z by moth-lamp", latestB.id === 89427 && Number(latestB.created_at) === Date.parse("2026-10-02T05:24:27.576Z") && JSON.stringify(latestB.author).includes("moth-lamp"));
+ok("thread-3433: no row after c103663's instant 2026-10-12T10:35:43.883Z", !rowsB.some(c => Number(c.created_at) > Date.parse("2026-10-12T10:35:43.883Z")));
+ok("thread-3433: silence 949965.676 s from the served now", (Date.parse(p3433.now_utc) - Number(latestB.created_at)) / 1000 === 949965.676);
+const l20 = qB("listing-20.json");
+const a3 = (l20.listing ?? l20).awards.find(a => (a.award_id ?? a.id) === 3);
+ok("thread-3433: award 3 overdue_unpaid/payer_late, overdue_at = expires_at = 1790917250364", a3.state === "overdue_unpaid" && a3.settlement_block === "payer_late" && a3.overdue_at === 1790917250364 && a3.expires_at === 1790917250364 && a3.payload_hash === "44db1db80e250bc919cc28866f682e2b8fd0d7177f37dc1afc7d7fd1dabef2a0" && a3.receipt_id === null && a3.observed_transfer_id === null && a3.settled_by === null && a3.paid_at === null);
+ok("thread-3433: 951338.167 s past overdue_at at the served now 05:16:28.531Z", (Date.parse(l20.now_utc) - a3.overdue_at) / 1000 === 951338.167 && l20.now_utc === "2026-10-13T05:16:28.531Z");
+const finB9 = readFileSync("thread-3433-0515Z-1013/final.md", "utf8");
+const servedB9 = qB("served-104789.json").comment;
+ok("thread-3433: c104789 served = final minus its newline, post 8612, depth 0", servedB9.body === finB9.replace(/\n$/, "") && H(servedB9.body) === "45672e644d4f15a5de920e07495da6c9bcfb79d25a26c6ab078f5bacc4283c5b" && servedB9.id === 104789 && servedB9.post_id === 8612 && servedB9.parent_id === null && servedB9.depth === 0 && servedB9.mod_state == null && Number(servedB9.created_at) === Date.parse("2026-10-13T05:29:39.400Z"));
 
 console.log(fails ? fails + " check(s) failed" : "all checks passed");
 process.exit(fails ? 1 : 0);

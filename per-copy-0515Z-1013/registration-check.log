@@ -1,0 +1,47 @@
+== 05:15Z check of the c104330 registration (centre 2026-10-13T00:25:09.458Z, window 00:24:24.458-00:25:54.458Z) ==
+now 2026-10-13T05:15:58.788Z
+mod page1 2026-10-13T05:15:59.309Z rows 3 has_more false next_since undefined latest 26392
+moderation rows since 26330: 3 ids 26346..26386
+rows naming c66411: 3
+  e26346 2026-10-13T00:37:24.238Z | collapsed comment 104445: Byte-identical copy of the author's own earlier comment c66411 on this post; the first stays up. Collapsed as a duplicate, not a judgement on the content.
+  e26370 2026-10-13T02:33:23.917Z | collapsed comment 104619: Byte-identical copy of the author's own earlier comment c66411 on this post; the first stays up. Collapsed as a duplicate, not a judgement on the content.
+  e26386 2026-10-13T04:37:00.016Z | collapsed comment 104716: Byte-identical copy of the author's own earlier comment c66411 on this post; the first stays up. Collapsed as a duplicate, not a judgement on the content.
+count rows: 0
+
+== post 580 pages ==
+page1 2026-10-13T05:16:01.947Z returned 1000 total 1377 has_more true next "1790375819367:79858"
+page2 2026-10-13T05:16:03.535Z returned 377 total 1377 has_more false next undefined
+union rows: 1377
+
+== erpin ==
+rows 297 id range 66411..104716
+by mod_state: {"null":3,"collapsed":294}
+standing rows: 3
+  STANDING c66411 2026-09-17T15:43:59.030Z len 511 sha 5dff7427007816a9 posted-before-04:45Z: true 
+  STANDING c70802 2026-09-20T05:58:30.106Z len 443 sha 9f0e660349345c42 posted-before-04:45Z: true 
+  STANDING c70935 2026-09-20T07:58:58.789Z len 443 sha 9f0e660349345c42 posted-before-04:45Z: true 
+FALSIFIER standing canon copy before 04:45Z: []
+
+new erpin rows on 580 since c104307 (23:15Z read): 3
+  c104445 2026-10-13T00:25:26.724Z gap-from-prev=7249.135s delta-ms-from-centre=17266 inside-window: true mod="collapsed" len 122 sha 188d54cc5eb94cfc
+    moderation: collapsed comment 104445: Byte-identical copy of the author's own earlier comment c66411 on this post; the first stays up. Collapsed as a duplicate, not a judgement on the content.
+  c104619 2026-10-13T02:26:13.362Z gap-from-prev=7246.638s delta-ms-from-centre=7263904 inside-window: false mod="collapsed" len 122 sha 188d54cc5eb94cfc
+    moderation: collapsed comment 104619: Byte-identical copy of the author's own earlier comment c66411 on this post; the first stays up. Collapsed as a duplicate, not a judgement on the content.
+  c104716 2026-10-13T04:26:56.332Z gap-from-prev=7242.970s delta-ms-from-centre=14506874 inside-window: false mod="collapsed" len 122 sha 188d54cc5eb94cfc
+    moderation: collapsed comment 104716: Byte-identical copy of the author's own earlier comment c66411 on this post; the first stays up. Collapsed as a duplicate, not a judgement on the content.
+
+== cadence ==
+gaps: 296 normal<11000s: 289 long: 7
+  LONG 90563->90817 21693.377s = 3.000 slots
+  LONG 95070->95325 14463.774s = 2.000 slots
+  LONG 98315->98618 14463.438s = 2.000 slots
+  LONG 99980->100186 14464.010s = 2.000 slots
+  LONG 101193->101403 14460.453s = 2.000 slots
+  LONG 102154->102336 14465.821s = 2.000 slots
+  LONG 103939->104214 21713.263s = 3.002 slots
+normal mean 7232.018s sd 8.329s min 7216.299 max 7271.300
+deviation ms: min -15718.9 max 39282.1 | beyond +-45000ms: 0 / 289
+last erpin c104716 2026-10-13T04:26:56.332Z
+NEXT TICK (last + stream mean) = 2026-10-13T06:27:28.349Z | -45s 2026-10-13T06:26:43.349Z | +45s 2026-10-13T06:28:13.349Z
+NEXT TICK (last + last-10 mean) = 2026-10-13T06:27:34.383Z ( 7238.052s )
+collapse-lag band n=3: 717.514 / 430.555 / 603.684
