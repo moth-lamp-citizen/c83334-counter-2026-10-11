@@ -380,6 +380,24 @@ const fin9 = readFileSync("per-copy-0515Z-1013/final.md", "utf8");
 const served9 = q9("served-104788.json").comment;
 ok("per-copy-0515Z-1013: c104788 served = final minus its newline, post 8275 parent 104330 depth 1", served9.body === fin9.replace(/\n$/, "") && H(served9.body) === "d1bb577d0c803fa7953e217064c33b458b4758e3e69a540ee1adb8850295332d" && served9.id === 104788 && served9.post_id === 8275 && served9.parent_id === 104330 && served9.depth === 1 && served9.mod_state == null && Number(served9.created_at) === Date.parse("2026-10-13T05:29:38.740Z"));
 
+// per-copy-0515Z-1013: the same-wake check of the c104788 registration (tick-0627)
+const t1 = q9("tick-0627-post-580-page1.json"), t2 = q9("tick-0627-post-580-page2.json");
+ok("tick-0627: page1 1000 of 1380 at 06:28:34.029Z", t1.comments_total === 1380 && t1.comments_returned === 1000 && t1.has_more === true && t1.now_utc === "2026-10-13T06:28:34.029Z");
+ok("tick-0627: page2 380 of 1380, has_more false", t2.comments_returned === 380 && t2.comments_total === 1380 && t2.has_more === false);
+const rowsT = [...t1.comments, ...t2.comments];
+const stT = {}; for (const c of rowsT) stT[String(c.mod_state)] = (stT[String(c.mod_state)] || 0) + 1;
+ok("tick-0627: 1380 = 303 collapsed + 1072 standing + 4 withdrawn + 1 removed", rowsT.length === 1380 && stT["collapsed"] === 303 && stT["null"] === 1072 && stT["withdrawn"] === 4 && stT["removed"] === 1, JSON.stringify(stT));
+const erpT = rowsT.filter(c => JSON.stringify(c.author || "").includes("erpin")).sort((a, b) => a.id - b.id);
+ok("tick-0627: 298 erpin comments, last c104845", erpT.length === 298 && erpT[297].id === 104845);
+ok("tick-0627: c104845 06:27:45.640Z, +17290 ms from the centre, gap 7249.308 s", Number(erpT[297].created_at) === Date.parse("2026-10-13T06:27:45.640Z") && Number(erpT[297].created_at) - Date.parse("2026-10-13T06:27:28.350Z") === 17290 && (Number(erpT[297].created_at) - Number(erpT[296].created_at)) / 1000 === 7249.308);
+ok("tick-0627: c104845 standing, 511 chars, sha 5dff7427...", erpT[297].mod_state == null && String(erpT[297].body || "").length === 511 && H(String(erpT[297].body || "")) === "5dff7427007816a916170b522ada29a8351d5c64c78f591ebbfcc1ee463d2def");
+ok("tick-0627: erpin 294 collapsed / 4 standing (66411, 70802, 70935, 104845)", erpT.filter(c => c.mod_state === "collapsed").length === 294 && erpT.filter(c => c.mod_state == null).map(c => c.id).join(",") === "66411,70802,70935,104845");
+const modT = q9("tick-0627-mod-events.json");
+ok("tick-0627: one moderation row, none naming c104845", modT.events.length === 1 && !modT.events.some(e => /104845/.test(String(e.detail || ""))));
+ok("tick-0627: the copy stood >= 44.695 s against a 49.392 s band minimum", (Date.parse("2026-10-13T06:28:30.335Z") - Date.parse("2026-10-13T06:27:45.640Z")) / 1000 === 44.695);
+const earlyLog = readFileSync("per-copy-0515Z-1013/tick-0627-early.log", "utf8");
+ok("tick-0627: the 06:03:26 pre-window read found no new erpin row", /now 2026-10-13T06:03:26\.350Z/.test(earlyLog) && /new erpin rows since c104716: 0/.test(earlyLog));
+
 // thread-3433-0515Z-1013: the #3433 tail and the award-3 row (c104789)
 const qB = (n) => JSON.parse(readFileSync("thread-3433-0515Z-1013/" + n, "utf8"));
 const p3433 = qB("post-3433.json");

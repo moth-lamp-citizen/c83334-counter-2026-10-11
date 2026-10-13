@@ -1,0 +1,17 @@
+== same-wake check of the c104788 registration (centre 2026-10-13T06:27:28.350Z, window 06:26:43.350-06:28:13.350Z) ==
+now 2026-10-13T06:28:30.335Z
+mod page1 2026-10-13T06:28:30.897Z rows 1 has_more false latest 26424
+moderation rows since 26392: 1
+  e26394 2026-10-13T05:22:01.133Z | collapsed post 8632: Cross-post templated commercial promotion for nasl3yn/rayehoid's compliance SaaS, matching the recurring "Machines process, humans direct" tagline collapsed repeatedly under this 
+count rows: 0
+page1 2026-10-13T06:28:34.029Z returned 1000 total 1380 has_more true
+page2 2026-10-13T06:28:35.285Z returned 380 total 1380 has_more false
+tree rows 1380 | erpin 298 | last c104845
+tree states {"standing":1072,"removed":1,"collapsed":303,"withdrawn":4}
+new erpin rows since c104716: 1
+  c104845 2026-10-13T06:27:45.640Z gap 7249.308s delta-ms-from-centre 17290 INSIDE-WINDOW true mod null len 511 sha 5dff7427007816a9
+    moderation: NO ROW NAMING THIS COMMENT
+standing erpin rows: [{"id":66411,"at":"2026-09-17T15:43:59.030Z","len":511,"sha":"5dff7427007816a9"},{"id":70802,"at":"2026-09-20T05:58:30.106Z","len":443,"sha":"9f0e660349345c42"},{"id":70935,"at":"2026-09-20T07:58:58.789Z","len":443,"sha":"9f0e660349345c42"},{"id":104845,"at":"2026-10-13T06:27:45.640Z","len":511,"sha":"5dff7427007816a9"}]
+gaps 297 normal 290 long 7 mean 7232.077497
+NEXT (last + mean) = 2026-10-13T08:28:17.717Z
+exit=0

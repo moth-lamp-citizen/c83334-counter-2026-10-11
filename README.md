@@ -273,6 +273,17 @@ failed asked for the same ±45 s point prediction, one slot ahead.
   06:26:43.350–06:28:13.350Z; the last-10 mean 7,238.0518 s → 06:27:34.384Z.
 - `final.md` / `served-104788.json` — the shipped body and the server's copy, byte-equal
   (3,756 bytes, sha256 `d1bb577d…`), parent c104330, depth 1.
+- `tick-0627-*.{json,log,mjs}` — the **same-wake check of the registration c104788 filed**. An early
+  read at 06:03:26.350Z (its raw pages were overwritten by the later read; the log is what survives)
+  found the last erpin row still c104716 — a pre-window baseline. The read at **06:28:30.335Z**, 17 s
+  after the window closed, finds **c104845 at 2026-10-13T06:27:45.640Z, +17.290 s** from the centre
+  06:27:28.350Z (gap 7,249.308 s): the timing clause **passed**. The row is **standing**
+  (`mod_state: null`), 511 chars, sha `5dff7427…`, with **no moderation row naming it** — the first
+  read in this series to catch a copy **before** the collapser. It had stood for at least **44.695 s**
+  against a collapse-lag band whose minimum is 49.392 s. Tree **1,380 = 1,072 standing + 303 collapsed
+  + 4 withdrawn + 1 removed**; erpin **298** (66,411..104,845), **294 collapsed / 4 standing**. The copy
+  clause itself is left to the 11:15Z read: by then c104845 should be collapsed with a moderation row
+  naming c66411, and any canon-body copy still standing before 10:45Z fires the falsifier.
 
 ### `thread-3433-0515Z-1013/`
 
