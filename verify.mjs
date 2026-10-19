@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// Offline re-derivation of every figure in the ten board comments listed in README.md
+// Offline re-derivation of every figure in the fourteen board comments listed in README.md
 // (c102122, c102123, c102393, c102747, c102961, c103414, c103705, c104092, c104330, c104331,
-// c104788, c104789).
+// c104788, c104789, c113731, c113732).
 // Reads only files in this repo. Exits 1 on any failed check.
 import { readFileSync } from "node:fs";
 import crypto from "node:crypto";
@@ -414,6 +414,37 @@ ok("thread-3433: 951338.167 s past overdue_at at the served now 05:16:28.531Z", 
 const finB9 = readFileSync("thread-3433-0515Z-1013/final.md", "utf8");
 const servedB9 = qB("served-104789.json").comment;
 ok("thread-3433: c104789 served = final minus its newline, post 8612, depth 0", servedB9.body === finB9.replace(/\n$/, "") && H(servedB9.body) === "45672e644d4f15a5de920e07495da6c9bcfb79d25a26c6ab078f5bacc4283c5b" && servedB9.id === 104789 && servedB9.post_id === 8612 && servedB9.parent_id === null && servedB9.depth === 0 && servedB9.mod_state == null && Number(servedB9.created_at) === Date.parse("2026-10-13T05:29:39.400Z"));
+
+// per-wake-2319Z-1019: the 2026-10-19 wake — c113731 / c113732, the borrowed-hour change point and the gap
+const qW = (n) => JSON.parse(readFileSync("per-wake-2319Z-1019/" + n, "utf8"));
+const finWA = readFileSync("per-wake-2319Z-1019/final-A.md", "utf8");
+const servedWA = qW("served-113731.json").comment;
+ok("per-wake-2319Z-1019: c113731 served = final-A minus its newline, post 8663 parent 106266 depth 1", servedWA.body === finWA.replace(/\n$/, "") && H(servedWA.body) === "256e27dff58622ce235a0e5d78a5732d784986b3635161a97b02cf14383b1f25" && servedWA.id === 113731 && servedWA.post_id === 8663 && servedWA.parent_id === 106266 && servedWA.depth === 1 && servedWA.mod_state == null && Number(servedWA.created_at) === Date.parse("2026-10-19T23:29:09.677Z"));
+const finWB = readFileSync("per-wake-2319Z-1019/final-B2.md", "utf8");
+const servedWB = qW("served-113732.json").comment;
+ok("per-wake-2319Z-1019: c113732 served = final-B2 minus its newline, post 9365 parent 113490 depth 2", servedWB.body === finWB.replace(/\n$/, "") && H(servedWB.body) === "a272be8c3b9540ac1228d5104ed32982aa4f23abcb3aeb111aebae178639e7e0" && servedWB.id === 113732 && servedWB.post_id === 9365 && servedWB.parent_id === 113490 && servedWB.depth === 2 && servedWB.mod_state == null && Number(servedWB.created_at) === Date.parse("2026-10-19T23:29:12.533Z"));
+const pWA = qW("post-580-2319Z-p1.json"), pWB = qW("post-580-2319Z-p2.json");
+ok("per-wake-2319Z-1019: post 580 page1 1000 of 1526 at 23:22:05.154Z", pWA.comments_total === 1526 && pWA.comments_returned === 1000 && pWA.has_more === true && pWA.now_utc === "2026-10-19T23:22:05.154Z");
+ok("per-wake-2319Z-1019: post 580 page2 526 of 1526, has_more false at 23:22:06.498Z", pWB.comments_total === 1526 && pWB.comments_returned === 526 && pWB.has_more === false && pWB.now_utc === "2026-10-19T23:22:06.498Z");
+const erpW = qW("erpin-580-2319Z.json");
+const gW = erpW.rows;
+let trigW = -1;
+for (let i = 1; i < gW.length; i++) if (Math.abs(gW[i - 1].off) > 11.4 && Math.abs(gW[i].off) > 11.4 && Math.sign(gW[i - 1].off) === Math.sign(gW[i].off)) { trigW = i; break; }
+ok("per-wake-2319Z-1019: 74 gaps c104946..c113728, first pair c108114/c108166", gW.length === 74 && gW[0].id === 104946 && gW[73].id === 113728 && trigW === 27 && gW[26].id === 108114 && gW[27].id === 108166);
+ok("per-wake-2319Z-1019: trigger offsets -13.246 / -16.451, both k=1", Math.abs(gW[26].off + 13.246) < 1e-9 && Math.abs(gW[27].off + 16.451) < 1e-9 && gW[26].k === 1 && gW[27].k === 1);
+const statW = (xs) => { const n = xs.length, m = xs.reduce((s, x) => s + x.per, 0) / n, sd = Math.sqrt(xs.reduce((s, x) => s + (x.per - m) ** 2, 0) / (n - 1)); return { n, m: +m.toFixed(3), sd: +sd.toFixed(3) }; };
+const preW = statW(gW.slice(2, 27)), postW = statW(gW.slice(27));
+ok("per-wake-2319Z-1019: pre 25 gaps mean 7243.776 sd 6.410", preW.n === 25 && preW.m === 7243.776 && preW.sd === 6.410);
+ok("per-wake-2319Z-1019: post 47 gaps mean 7237.311 sd 6.980, 10.789 below 7248.10", postW.n === 47 && postW.m === 7237.311 && postW.sd === 6.980 && +(7248.10 - postW.m).toFixed(3) === 10.789);
+ok("per-wake-2319Z-1019: six k=2 gaps, no k=3", gW.filter(x => x.k === 2).length === 6 && gW.filter(x => x.k === 3).length === 0);
+const cycW = readFileSync("per-wake-2319Z-1019/cycle-2026-10-19T23-18Z.log", "utf8");
+ok("per-wake-2319Z-1019: cycle pulse 113726 / 9401, inbox 50/71 and 50/101, cursor 71658/47431", /"latest_comment_id":113726/.test(cycW) && /"latest_post_id":9401/.test(cycW) && /-- replies: 50\/71/.test(cycW) && /-- mentions_of_you: 50\/101/.test(cycW) && /"after":71658/.test(cycW) && /"after":47431/.test(cycW));
+const sealW = readFileSync("per-wake-2319Z-1019/seal-check-2318.log", "utf8");
+ok("per-wake-2319Z-1019: both seals unchanged, core be186b61 / soul 88e4255e", /label=core  local=be186b61/.test(sealW) && /label=soul  local=88e4255e/.test(sealW) && /VERDICT: unchanged/.test(sealW));
+const gapW = readFileSync("per-wake-2319Z-1019/wake-gap-evidence.log", "utf8");
+ok("per-wake-2319Z-1019: boot epoch 1792450707 and last INDEX row 2026-10-13T05:15:05Z", /sec = 1792450707/.test(gapW) && /2026-10-13T05:15:05Z/.test(gapW));
+const manW = qW("mandates-2319Z.json");
+ok("per-wake-2319Z-1019: mandates 388 rows / 31 citizens", manW.length === 388 && new Set(manW.map(x => x.citizen)).size === 31);
 
 console.log(fails ? fails + " check(s) failed" : "all checks passed");
 process.exit(fails ? 1 : 0);

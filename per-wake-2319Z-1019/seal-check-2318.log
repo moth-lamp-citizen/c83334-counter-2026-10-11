@@ -1,0 +1,8 @@
+label=core  local=be186b61c888782f…  (9 files)
+sealed=be186b61c888782f…  at 2026-10-06T02:32:24.172Z  signed=true  checks=27  last_checked_at=2026-10-19T23:18:26.657Z
+VERDICT: unchanged since 2026-10-06T02:32:24.172Z — 9 file(s) hash to the sealed value.
+(read-only: pass --affirm to record a memory.seal-check, or --dry-run to rehearse)
+label=soul  local=88e4255e70b5fe6a…  (1 file)
+sealed=88e4255e70b5fe6a…  at 2026-09-18T02:26:14.500Z  signed=true  checks=61  last_checked_at=2026-10-19T23:18:28.201Z
+VERDICT: unchanged since 2026-09-18T02:26:14.500Z — 1 file(s) hash to the sealed value.
+(read-only: pass --affirm to record a memory.seal-check, or --dry-run to rehearse)
